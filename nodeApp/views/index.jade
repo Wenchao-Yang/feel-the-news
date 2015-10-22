@@ -44,11 +44,24 @@ block content
 
       // Receive results and modify webpage
       posting.done(function(data) {
-        var htmlResult = '<tr class='+data.url+'><td>'+'<a href=\"'+data.url+'\" target=\"_blank\">'+ data.title+'</a>'+'</td><td>'+data.description+'</td><td>'+data.senRate+'</td><td>'+data.techRate+'</td><td>'+data.read+'</td><td><button>Delete</button></td></tr>'
+
+        // Unique id for the rows, remove all non alphabets and numbers
+        id = data.url.replace(/[^A-Za-z0-9]/g, '');
+        var htmlResult = '<tr class=\"'+id+'\"><td>'+'<a href=\"'+data.url+'\" target=\"_blank\">'+ data.title+'</a>'+'</td><td>'+data.description+'</td><td>'+data.senRate+'</td><td>'+data.techRate+'</td><td>'+data.read+'</td><td><button>Delete</button></td></tr>'
+
         $('#newsTable').append(htmlResult);
-        $('.'+data.url).find('button').click(function() {
-          $('.'+data.url).remove();
-        });
+
+        // Delete on Click
+        function remove(id){
+          $('.'+id).remove();
+        };
+        $('.' + id).show().find('button').click(remove.bind(null, id));
+
+        // Update Read status
+        function updateRead(id){
+          $('.' + id).find('td:nth-child(5)').text('Read');
+        };
+        $('.' + id).show().find('a').click(updateRead.bind(null, id));
       });
       this.reset();
     });
