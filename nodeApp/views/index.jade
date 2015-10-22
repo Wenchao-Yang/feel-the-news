@@ -1,0 +1,54 @@
+extends layout
+block content
+  p(id='description')
+    | Welcome to FeelTheNews
+    br
+    | Please enter a URL for us to crawl and analyze.
+  div
+    form(action='/users/analyzeURL', id='urlInput', style='margin-left:40px')
+      | AnalyzeURL: 
+      input(type='text', name='urlQuery', placeholder='News Source URL...')
+      input(type='submit', value='Submit')
+  div
+    // News Table
+    table(cellspacing='0', id='newsTable')
+      thead
+        tr
+          th
+            | Article
+          th
+            | Description
+          th
+            | Sentiment Score
+          th
+            | Readability Rating
+          th
+            | Read/ Unread
+          th
+            | Delete
+      tbody
+  script.
+    $("#urlInput").submit(function(event){
+
+      // Stop form from default submit
+      event.preventDefault();
+
+      // Get url
+      var $form = $( this ),
+        urlQuery = $form.find("input[name='urlQuery']").val(),
+        act = $form.attr("action");
+
+      // Send data using post
+      var posting = $.post(act, { url: urlQuery });
+
+
+      // Receive results and modify webpage
+      posting.done(function(data) {
+        var htmlResult = '<tr class='+data.url+'><td>'+'<a href=\"'+data.url+'\" target=\"_blank\">'+ data.title+'</a>'+'</td><td>'+data.description+'</td><td>'+data.senRate+'</td><td>'+data.techRate+'</td><td>'+data.read+'</td><td><button>Delete</button></td></tr>'
+        $('#newsTable').append(htmlResult);
+        $('.'+data.url).find('button').click(function() {
+          $('.'+data.url).remove();
+        });
+      });
+      this.reset();
+    });

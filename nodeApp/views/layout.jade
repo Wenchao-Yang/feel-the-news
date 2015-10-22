@@ -1,0 +1,22 @@
+//doctype html
+//html
+//  head
+//    title= title
+//    link(rel='stylesheet', href='/stylesheets/style.css')
+//  body
+//    block content
+doctype html
+html
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  head
+    script(src="https://code.jquery.com/jquery-1.10.2.js")
+    - var title = 'FeelTheNews'
+    title= title
+  .nav
+    ul
+      li.home
+        a(href='/') Home
+      li.about
+        a(href='/') About
+  body
+    block content
