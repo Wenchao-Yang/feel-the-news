@@ -83,4 +83,3 @@ def updatein(url):
     cursor.close()
     cnx.close()
     
-multi_add()
