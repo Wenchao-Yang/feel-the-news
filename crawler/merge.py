@@ -69,8 +69,18 @@ def total_website_print(day = "Thu"):
 
 
 if __name__ == '__main__':
+    import sys
+    if sys.argv[1] == '-u':
+        one_website_print(sys.argv[2])
+    elif sys.argv[1] == '-d':
+        total_website_print(sys.argv[2])
+    else:
+        print('merge.py -u <url>')
+        print('merge.py -d <day>')
+
+
     # one_website_print("http://www.bbc.com/news/world-europe-34595409")
 
-    print(total_website_return()[0])
-    total_website_print()
-    #one_website_print("http://www.bbc.com/news/world-europe-34602621")
+    # print(total_website_return()[0])
+    # total_website_print()
+    # one_website_print("http://www.bbc.com/news/world-europe-34602621")

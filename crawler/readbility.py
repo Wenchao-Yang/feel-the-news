@@ -34,7 +34,7 @@ class Text(object):
 
         # 1. parse text into separate sentences based on punc
         from nltk.tokenize import sent_tokenize
-
+        # from 'Models' tab and select 'punkt'
         sentences = sent_tokenize(text.decode('utf8'))
         # 2. cal total sentences
         self.sent_count = len(sentences)
