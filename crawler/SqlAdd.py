@@ -83,4 +83,4 @@ def updatein(url):
     cursor.close()
     cnx.close()
     
-single_add("http://www.bbc.com/news/world-europe-34602621")
+multi_add()
