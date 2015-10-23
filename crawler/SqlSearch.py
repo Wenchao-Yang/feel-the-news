@@ -1,7 +1,7 @@
 def below_5():
     import datetime
     import mysql.connector
-
+    import json
     cnx = mysql.connector.connect(user='root', password='1111',
                                   database='start')
 
@@ -18,9 +18,9 @@ def below_5():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
+            stra+="{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
         else:
-            stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
+            stra+=",{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
     stra+="]"
 
     cursor.close()
@@ -35,6 +35,7 @@ def f5_to_10():
     import datetime
     import mysql.connector
 
+    import json
     cnx = mysql.connector.connect(user='root', password='1111',
                                   database='start')
 
@@ -50,10 +51,11 @@ def f5_to_10():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
+            stra+="{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
         else:
-            stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
+            stra+=",{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
     stra+="]"
+
     cursor.close()
     cnx.close()
     return stra
@@ -66,6 +68,7 @@ def f10_to_15():
     import datetime
     import mysql.connector
 
+    import json
     #cnx = mysql.connector.connect(user='', password='',
     #                             host='',
     #                              database='demo')
@@ -84,10 +87,11 @@ def f10_to_15():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
+            stra+="{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
         else:
-            stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
+            stra+=",{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
     stra+="]"
+
 
     cursor.close()
     cnx.close()
@@ -100,6 +104,7 @@ def above_15():
     import datetime
     import mysql.connector
 
+    import json
     cnx = mysql.connector.connect(user='root', password='1111',
                                   database='start')
     cursor = cnx.cursor()
@@ -115,10 +120,11 @@ def above_15():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
+            stra+="{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
         else:
-            stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
+            stra+=",{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
     stra+="]"
+
 
     cursor.close()
     cnx.close()
@@ -130,6 +136,7 @@ def printall():
     import datetime
     import mysql.connector
 
+    import json
     cnx = mysql.connector.connect(user='root', password='1111',
                                   database='start')
     cursor = cnx.cursor()
@@ -144,10 +151,11 @@ def printall():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
+            stra+="{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
         else:
-            stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
+            stra+=",{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
     stra+="]"
+
 
     cursor.close()
     cnx.close()
