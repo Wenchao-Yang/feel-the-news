@@ -1,9 +1,14 @@
 ''' This file is to combine crawler with the analyzer
 '''
-from readbility.readbility import Text
+
+from readbility import Text
 import json
 
 def one_website_return(url):
+    '''
+    :param url: url
+    :return: a dictionary
+    '''
     from trial import crawlerforspecificwebsite
     arr=crawlerforspecificwebsite(url)
 
@@ -16,20 +21,29 @@ def one_website_return(url):
     output['readRate'] = text.avg_grade()
     output['url'] = url
     output['category'] = arr[2]
+    output['read'] = 'unread'
 
-    return json.dumps(output)
+    return output
 
 
 def one_website_print(url):
+    '''
+    :param url:
+    :return: a json
+    '''
     output = one_website_return(url)
-    print(output)
+    print(json.dumps(output))
 
 
 
 def total_website_return(day="Thu"):
+    '''
+    :param day:
+    :return: a list of dict
+    '''
     from crawler import crawlerforrss
     arr=crawlerforrss(day)
-    output = dict()
+    output = []
 
     for i in range(len(arr)):
         text = Text(arr[i][4].encode('utf-8'))
@@ -41,19 +55,22 @@ def total_website_return(day="Thu"):
         one_output['readRate'] = text.avg_grade()
         one_output['url'] = arr[i][1]
         one_output['category'] = arr[i][5]
+        one_output['read'] = 'unread'
 
-        output[i] = one_output
+        output.append(one_output)
 
-    return json.dumps(output)
+    return output
 
 
 
 def total_website_print(day = "Thu"):
     output = total_website_return(day)
-    print(output)
+    print(json.dumps(output))
 
 
 if __name__ == '__main__':
     # one_website_print("http://www.bbc.com/news/world-europe-34595409")
 
+    print(total_website_return()[0])
     total_website_print()
+    #one_website_print("http://www.bbc.com/news/world-europe-34602621")
