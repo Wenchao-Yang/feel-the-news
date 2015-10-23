@@ -4,70 +4,57 @@ def below_5():
     import json
     cnx = mysql.connector.connect(user='root', password='1111',
                                   database='start')
-
     cursor = cnx.cursor()
-
     query = ("SELECT * FROM demo "
              "WHERE readRate<5")
-
-
     cursor.execute(query)
-
-    stra="["
-    count=0
+    output = []
     for (title, description, senRate, readRate, url, category,readby) in cursor:
-        if count==0:
-            count+=1
-            stra+="{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
-        else:
-            stra+=",{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
-    stra+="]"
-
+        one_output = {"title":"null", "description":"null","senRate":0, "readRate":0, "url":"null", "category":"null"}
+        one_output["title"] = title
+        one_output["description"] = description
+        one_output["senRate"] = senRate  
+        one_output["readRate"] = readRate
+        one_output["url"] =url
+        one_output["category"] = category
+        one_output["readby"] = readby
+        output.append(one_output)
     cursor.close()
     cnx.close()
-    return stra
+    return json.dumps(output)
 
 
 
 def f5_to_10():
-
-
     import datetime
     import mysql.connector
-
     import json
     cnx = mysql.connector.connect(user='root', password='1111',
                                   database='start')
-
     cursor = cnx.cursor()
-
     query = ("SELECT * FROM demo "
              "WHERE readRate>=5 AND readRate<10")
-
-
     cursor.execute(query)
-    stra="["
-    count=0
+    output = []
     for (title, description, senRate, readRate, url, category,readby) in cursor:
-        if count==0:
-            count+=1
-            stra+="{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
-        else:
-            stra+=",{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
-    stra+="]"
-
+        one_output = {"title":"null", "description":"null","senRate":0, "readRate":0, "url":"null", "category":"null"}
+        one_output["title"] = title
+        one_output["description"] = description
+        one_output["senRate"] = senRate  
+        one_output["readRate"] = readRate
+        one_output["url"] =url
+        one_output["category"] = category
+        one_output["readby"] = readby
+        output.append(one_output)
     cursor.close()
     cnx.close()
-    return stra
+    return json.dumps(output)
 
 
 
 def f10_to_15():
-
-
     import datetime
     import mysql.connector
-
     import json
     #cnx = mysql.connector.connect(user='', password='',
     #                             host='',
@@ -75,90 +62,73 @@ def f10_to_15():
     cnx = mysql.connector.connect(user='root', password='1111',
                                   database='start')
     cursor = cnx.cursor()
-
     query = ("SELECT * FROM demo "
              "WHERE readRate>=10 AND readRate<=15")
-
-
     cursor.execute(query)
-
-    stra="["
-    count=0
+    output = []
     for (title, description, senRate, readRate, url, category,readby) in cursor:
-        if count==0:
-            count+=1
-            stra+="{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
-        else:
-            stra+=",{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
-    stra+="]"
-
-
+        one_output = {"title":"null", "description":"null","senRate":0, "readRate":0, "url":"null", "category":"null"}
+        one_output["title"] = title
+        one_output["description"] = description
+        one_output["senRate"] = senRate  
+        one_output["readRate"] = readRate
+        one_output["url"] =url
+        one_output["category"] = category
+        one_output["readby"] = readby
+        output.append(one_output)
     cursor.close()
     cnx.close()
-    return stra
+    return json.dumps(output)
 
 def above_15():
-
-
     import datetime
     import mysql.connector
-
     import json
     cnx = mysql.connector.connect(user='root', password='1111',
                                   database='start')
     cursor = cnx.cursor()
-
     query = ("SELECT * FROM demo "
              "WHERE readRate>=15")
-
-
     cursor.execute(query)
-
-    stra="["
-    count=0
+    output = []
     for (title, description, senRate, readRate, url, category,readby) in cursor:
-        if count==0:
-            count+=1
-            stra+="{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
-        else:
-            stra+=",{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
-    stra+="]"
-
-
+        one_output = {"title":"null", "description":"null","senRate":0, "readRate":0, "url":"null", "category":"null"}
+        one_output["title"] = title
+        one_output["description"] = description
+        one_output["senRate"] = senRate  
+        one_output["readRate"] = readRate
+        one_output["url"] =url
+        one_output["category"] = category
+        one_output["readby"] = readby
+        output.append(one_output)
     cursor.close()
     cnx.close()
-    return stra
+    return json.dumps(output)
 
 
 def printall():
-
     import datetime
     import mysql.connector
-
     import json
     cnx = mysql.connector.connect(user='root', password='1111',
                                   database='start')
     cursor = cnx.cursor()
-
     query = ("SELECT * FROM demo ")
-
-
     cursor.execute(query)
-
-    stra="["
-    count=0
+    output = []
     for (title, description, senRate, readRate, url, category,readby) in cursor:
-        if count==0:
-            count+=1
-            stra+="{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
-        else:
-            stra+=",{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
-    stra+="]"
-
-
+        one_output = {"title":"null", "description":"null","senRate":0, "readRate":0, "url":"null", "category":"null"}
+        one_output["title"] = title
+        one_output["description"] = description
+        one_output["senRate"] = senRate  
+        one_output["readRate"] = readRate
+        one_output["url"] =url
+        one_output["category"] = category
+        one_output["readby"] = readby
+        output.append(one_output)
     cursor.close()
     cnx.close()
-    return stra
+    return json.dumps(output)
 
 
 
