@@ -21,7 +21,6 @@ function add(data) {
     // Remove from database
     var removePosting = $.post('/users/remove', {url: newsURL});
     removePosting.done(function(data){
-      alert(data);
     });
   }
   $('.' + id).show().find('button').click(remove.bind(null, id, data.url));
@@ -31,7 +30,6 @@ function add(data) {
     $('.' + id).find('td:nth-child(5)').text('Read');
     var updateReadPosting = $.post('/users/updateRead', {url: newsURL});
     updateReadPosting.done(function(data){
-      alert(data);
     });
   }
   $('.' + id).show().find('a').click(updateRead.bind(null, id, data.url));
@@ -41,6 +39,8 @@ function add(data) {
 $('#readDrop').change(function() {
   var number = $(this).find('option:selected').attr('data-number');
   var readQueryPosting = $.post('/users/readQuery', {'type': number});
+  // Empty Table
+  $('#newsStats').empty();
   readQueryPosting.done(function(data){
     // Will arrive in array form
     if (data != {}) {

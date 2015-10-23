@@ -15,13 +15,13 @@ def crawlerforrss(day):
     count=0
     arr=[]
     for child in root[0]:
-        if child.tag=="item" and child.find('pubDate').text.find(day)>=0: 
+        if child.tag=="item" and child.find('pubDate').text.find(day)>=0:
             count+=1
             title=child.find('title').text
             time=child.find('pubDate').text
             url=child.find('link').text
             description=child.find('description').text
-            
+
             handle=urllib.urlopen(url)
             bbcnewscontent=handle.read()
             handle.close()
@@ -32,9 +32,9 @@ def crawlerforrss(day):
             category=parsed_html.find("meta", {'property':"og:article:section"})['content']
             val=[title,url,time,description,content,category]
             arr.append(val)
-            if count==2:
+            if count==5:
                 break
 
 
     return arr
-    
+

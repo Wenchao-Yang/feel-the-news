@@ -21,7 +21,7 @@ def one_website_return(url):
     output["readRate"] = text.avg_grade()
     output["url"] = url
     output["category"] = arr[2]
-    output["readby"] = "unread"
+    output["readby"] = "Unread"
 
     return output
 
@@ -55,7 +55,7 @@ def total_website_return(day="Thu"):
         one_output["readRate"] = text.avg_grade()
         one_output["url"] = arr[i][1]
         one_output["category"] = arr[i][5]
-        one_output["readby"] = "unread"
+        one_output["readby"] = "Unread"
 
         output.append(one_output)
 

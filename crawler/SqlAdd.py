@@ -45,6 +45,7 @@ def multi_add(day="Fri"):
     cnx.commit()
     cursor.close()
     cnx.close()
+    return json.dumps(demo_data)
 
 
 
@@ -75,7 +76,7 @@ def updatein(url):
 
     cursor = cnx.cursor()
 
-    update_demo = ("UPDATE demo SET readby='read' WHERE url = '"+url+"'")
+    update_demo = ("UPDATE demo SET readby='Read' WHERE url = '"+url+"'")
 
     cursor.execute(update_demo)
 
