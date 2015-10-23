@@ -167,4 +167,3 @@ def call_search(arg):
     if arg==4:
         above_15()
     
-call_search(0)
