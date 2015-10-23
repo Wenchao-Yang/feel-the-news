@@ -18,9 +18,9 @@ def below_5():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{'title':'"+title+"', 'description':'"+description+"', 'senRate':"+str(senRate)+", 'readRate':"+str(readRate)+", 'url':'"+url+"', 'category':'"+category+"', 'readby':'"+readby+"'}"
+            stra+="{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
         else:
-            stra+=",{'title':'"+title+"', 'description':'"+description+"', 'senRate':"+str(senRate)+", 'readRate':"+str(readRate)+", 'url':'"+url+"', 'category':'"+category+"', 'readby':'"+readby+"'}"
+            stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
     stra+="]"
     print(stra)
     
@@ -50,9 +50,9 @@ def f5_to_10():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{'title':'"+title+"', 'description':'"+description+"', 'senRate':"+str(senRate)+", 'readRate':"+str(readRate)+", 'url':'"+url+"', 'category':'"+category+"', 'readby':'"+readby+"'}"
+            stra+="{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
         else:
-            stra+=",{'title':'"+title+"', 'description':'"+description+"', 'senRate':"+str(senRate)+", 'readRate':"+str(readRate)+", 'url':'"+url+"', 'category':'"+category+"', 'readby':'"+readby+"'}"
+            stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
     stra+="]"
     print(stra)
     cursor.close()
@@ -84,9 +84,9 @@ def f10_to_15():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{'title':'"+title+"', 'description':'"+description+"', 'senRate':"+str(senRate)+", 'readRate':"+str(readRate)+", 'url':'"+url+"', 'category':'"+category+"', 'readby':'"+readby+"'}"
+            stra+="{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
         else:
-            stra+=",{'title':'"+title+"', 'description':'"+description+"', 'senRate':"+str(senRate)+", 'readRate':"+str(readRate)+", 'url':'"+url+"', 'category':'"+category+"', 'readby':'"+readby+"'}"
+            stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
     stra+="]"
     print(stra)
     
@@ -115,9 +115,9 @@ def above_15():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{'title':'"+title+"', 'description':'"+description+"', 'senRate':"+str(senRate)+", 'readRate':"+str(readRate)+", 'url':'"+url+"', 'category':'"+category+"', 'readby':'"+readby+"'}"
+            stra+="{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
         else:
-            stra+=",{'title':'"+title+"', 'description':'"+description+"', 'senRate':"+str(senRate)+", 'readRate':"+str(readRate)+", 'url':'"+url+"', 'category':'"+category+"', 'readby':'"+readby+"'}"
+            stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
     stra+="]"
     print(stra)
 
@@ -144,9 +144,9 @@ def printall():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{'title':'"+title+"', 'description':'"+description+"', 'senRate':"+str(senRate)+", 'readRate':"+str(readRate)+", 'url':'"+url+"', 'category':'"+category+"', 'readby':'"+readby+"'}"
+            stra+="{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
         else:
-            stra+=",{'title':'"+title+"', 'description':'"+description+"', 'senRate':"+str(senRate)+", 'readRate':"+str(readRate)+", 'url':'"+url+"', 'category':'"+category+"', 'readby':'"+readby+"'}"
+            stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
     stra+="]"
     print(stra)
 
@@ -167,3 +167,4 @@ def call_search(arg):
     if arg==4:
         above_15()
     
+call_search(0)
