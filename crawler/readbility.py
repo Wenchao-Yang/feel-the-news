@@ -69,7 +69,7 @@ class Text(object):
         '''
 
         score = 206.835 - 1.015*self.word_count/self.sent_count - 84.6*self.syll_count/self.word_count
-        return score
+        return round(score, 1)
 
     def flesch_grade_level(self):
         '''
@@ -77,7 +77,7 @@ class Text(object):
         relevant when the formula results in a number greater than 10.
         '''
         score = 0.39*self.word_count/self.sent_count + 11.8*self.syll_count/self.word_count - 15.59
-        return score
+        return round(score, 1)
 
     def gunning_fog_index(self):
         '''
@@ -85,7 +85,7 @@ class Text(object):
         '''
 
         score = 0.4*self.word_count/self.sent_count + 40*self.comp_count/self.word_count
-        return score
+        return round(score, 1)
 
     def coleman_index(self):
         '''
@@ -93,7 +93,7 @@ class Text(object):
         '''
 
         score = 0.0588 * self.char_count/self.word_count*100.0 - 0.296*self.sent_count/(self.word_count/100.0) - 15.8
-        return score
+        return round(score, 1)
 
     def smog(self): # only perform well when number of sentences >= 30
         '''
@@ -102,7 +102,7 @@ class Text(object):
         '''
         import math
         score = 1.0430* math.sqrt(self.comp_count * 30.0/self.sent_count) + 3.1291
-        return score
+        return round(score, 1)
 
     def automated_index(self):
 
@@ -110,7 +110,7 @@ class Text(object):
         :return: produces an approximate representation of the US grade level needed to comprehend the text.
         '''
         score = 4.71* self.char_count/ self.word_count + 0.5*self.word_count/self.sent_count - 21.43
-        return score
+        return round(score, 1)
 
     def avg_grade(self):
 
@@ -125,7 +125,7 @@ class Text(object):
         else:
             avg = (sum4 + self.smog())/5
 
-        return avg
+        return round(avg, 1)
 
 
 
