@@ -4,11 +4,26 @@ block content
     | Welcome to FeelTheNews
     br
     | Please enter a URL for us to crawl and analyze.
-  div
-    form(action='/users/analyzeURL', id='urlInput', style='margin-left:40px')
+  div(style='margin-left:40px')
+    button(id='crawlBBC')
+      | Crawl BBC World News
+    form(action='/users/analyzeURL', id='urlInput')
       | AnalyzeURL: 
       input(type='text', name='urlQuery', placeholder='News Source URL...')
       input(type='submit', value='Submit')
+  div.readSelect(style='margin-left:40px')
+    | Readability Selector: 
+    select(id='readDrop')
+      option(data-number='0')
+        | All
+      option(data-number='1')
+        | < 5
+      option(data-number='1')
+        | 5 - 10
+      option(data-number='1')
+        | 10 - 15
+      option(data-number='1')
+        | > 15
   div
     // News Table
     table(cellspacing='0', id='newsTable')
@@ -27,41 +42,4 @@ block content
           th
             | Delete
       tbody
-  script.
-    $("#urlInput").submit(function(event){
-
-      // Stop form from default submit
-      event.preventDefault();
-
-      // Get url
-      var $form = $( this ),
-        urlQuery = $form.find("input[name='urlQuery']").val(),
-        act = $form.attr("action");
-
-      // Send data using post
-      var posting = $.post(act, { url: urlQuery });
-
-
-      // Receive results and modify webpage
-      posting.done(function(data) {
-
-        // Unique id for the rows, remove all non alphabets and numbers
-        id = data.url.replace(/[^A-Za-z0-9]/g, '');
-        var htmlResult = '<tr class=\"'+id+'\"><td>'+'<a href=\"'+data.url+'\" target=\"_blank\">'+ data.title+'</a>'+'</td><td>'+data.description+'</td><td>'+data.senRate+'</td><td>'+data.techRate+'</td><td>'+data.read+'</td><td><button>Delete</button></td></tr>'
-
-        $('#newsTable').append(htmlResult);
-
-        // Delete on Click
-        function remove(id){
-          $('.'+id).remove();
-        };
-        $('.' + id).show().find('button').click(remove.bind(null, id));
-
-        // Update Read status
-        function updateRead(id){
-          $('.' + id).find('td:nth-child(5)').text('Read');
-        };
-        $('.' + id).show().find('a').click(updateRead.bind(null, id));
-      });
-      this.reset();
-    });
+  script(src='/javascripts/demo.js')
