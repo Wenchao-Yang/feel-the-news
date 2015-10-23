@@ -4,7 +4,6 @@ def crawlerforspecificwebsite(urltext):
     import urllib
     from bs4 import BeautifulSoup
 
-
     bbcrssurl=urltext
 
     handle=urllib.urlopen(bbcrssurl)
@@ -22,6 +21,7 @@ def crawlerforspecificwebsite(urltext):
     section=parsed_html.find("meta", {'property':"og:article:section"})['content']
     description=parsed_html.find("meta", {'property':"og:description"})['content']
     date=parsed_html.find("div", {'class':"date date--v2"}).text
-    arr=[content,section,description,date]
+    title=parsed_html.find('h1', attrs={'class':"story-body__h1"}).text
+    arr=[content,title,section,description,date]
 
     return arr

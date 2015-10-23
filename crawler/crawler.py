@@ -3,7 +3,7 @@ def crawlerforrss(day):
     from io import StringIO
     import urllib
     from bs4 import BeautifulSoup
-
+    import lxml
 
     bbcrssurl="http://feeds.bbci.co.uk/news/world/rss.xml"
 
