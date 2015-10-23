@@ -18,9 +18,9 @@ def below_5():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
+            stra+="{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
         else:
-            stra+=",{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
+            stra+=",{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
     stra+="]"
 
     cursor.close()
@@ -51,9 +51,9 @@ def f5_to_10():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
+            stra+="{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
         else:
-            stra+=",{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
+            stra+=",{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
     stra+="]"
 
     cursor.close()
@@ -87,16 +87,15 @@ def f10_to_15():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
+            stra+="{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
         else:
-            stra+=",{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
+            stra+=",{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
     stra+="]"
 
 
     cursor.close()
     cnx.close()
     return stra
-
 
 def above_15():
 
@@ -120,9 +119,9 @@ def above_15():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
+            stra+="{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
         else:
-            stra+=",{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
+            stra+=",{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
     stra+="]"
 
 
@@ -151,9 +150,9 @@ def printall():
     for (title, description, senRate, readRate, url, category,readby) in cursor:
         if count==0:
             count+=1
-            stra+="{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
+            stra+="{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
         else:
-            stra+=",{\"title\":\""+json.dumps(title)+"\", \"description\":\""+json.dumps(description)+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+json.dumps(url)+"\", \"category\":\""+json.dumps(category)+"\", \"readby\":\""+json.dumps(readby)+"\"}"
+            stra+=",{\"title\":"+json.dumps(title)+", \"description\":"+json.dumps(description)+", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":"+json.dumps(url)+", \"category\":"+json.dumps(category)+", \"readby\":"+json.dumps(readby)+"}"
     stra+="]"
 
 
@@ -174,4 +173,3 @@ def call_search(arg):
         return f10_to_15()
     if arg=='4':
         return above_15()
-
