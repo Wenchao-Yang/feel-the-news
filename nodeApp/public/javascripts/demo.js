@@ -1,11 +1,11 @@
 // Populate News Table with Database information
-//var getAllPosting = $.pos('/users/getAll');
-//getAllPosting.done(function(data) {
-//  // Will arrive in array form
-//  $(jQuery.parseJSON(JSON.stringify(data))).each(function() {
-//    add(this);
-//  });
-//});
+var getAllPosting = $.post('/users/readQuery', {type: 0});
+getAllPosting.done(function(data) {
+  // Will arrive in array form
+  $(jQuery.parseJSON(JSON.stringify(data))).each(function() {
+    add(this);
+  });
+});
 // General Add News Row, Handles Delete & Update
 function add(data) {
 

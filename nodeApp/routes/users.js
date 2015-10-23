@@ -11,10 +11,10 @@ router.get('/', function(req, res, next) {
 /* Receive POST analyze URL */
 router.post('/analyzeURL', function(req, res, next) {
     console.log('Received: ' + req.body.url);
-    var py = spawn('python', ['./scripts/test.py']);
+    var py = spawn('python', ['../crawler/singleURLAdd.py', req.body.url]);
     py.stdout.on('data', function(data) {
-        console.log(JSON.parse(data.toString()));
-        res.json(JSON.parse(data.toString()));
+        console.log(JSON.parse(data));
+        res.json(JSON.parse(data));
     });
 });
 
@@ -29,6 +29,7 @@ router.post('/crawlBBCWorld', function(req, res, next) {
 router.post('/remove', function(req, res, next) {
     console.log('Received: Remove Request ' + req.body.url);
     //DO REMOVE HERE
+    var py = spawn('python', ['../crawler/deleteURL.py', req.body.url]);
     res.send('Removed');
 });
 
@@ -36,6 +37,7 @@ router.post('/remove', function(req, res, next) {
 router.post('/updateRead', function(req, res, next) {
     console.log('Received: Update Read Request ' + req.body.url);
     //DO UPDATE HERE
+    var py = spawn('python', ['../crawler/updateRead.py', req.body.url]);
     res.send('Read Updated');
 });
 
@@ -43,7 +45,11 @@ router.post('/updateRead', function(req, res, next) {
 router.post('/readQuery', function(req, res, next) {
     console.log('Received: Readability Query Request ' + req.body.type);
     //DO UPDATE HERE
-    res.send([]);
+    var py = spawn('python', ['../crawler/readQuery.py', req.body.type]);
+    py.stdout.on('data', function(data) {
+        console.log(JSON.parse(data));
+        res.json(JSON.parse(data));
+    });
 });
 
 module.exports = router;

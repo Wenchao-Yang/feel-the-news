@@ -22,16 +22,16 @@ def below_5():
         else:
             stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
     stra+="]"
-    print(stra)
-    
+
     cursor.close()
     cnx.close()
-    
-    
-    
+    return stra
+
+
+
 def f5_to_10():
-    
-    
+
+
     import datetime
     import mysql.connector
 
@@ -54,15 +54,15 @@ def f5_to_10():
         else:
             stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
     stra+="]"
-    print(stra)
     cursor.close()
     cnx.close()
-    
-    
-    
+    return stra
+
+
+
 def f10_to_15():
-    
-    
+
+
     import datetime
     import mysql.connector
 
@@ -88,15 +88,15 @@ def f10_to_15():
         else:
             stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
     stra+="]"
-    print(stra)
-    
+
     cursor.close()
     cnx.close()
-    
-    
+    return stra
+
+
 def above_15():
-    
-    
+
+
     import datetime
     import mysql.connector
 
@@ -119,14 +119,14 @@ def above_15():
         else:
             stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
     stra+="]"
-    print(stra)
 
     cursor.close()
     cnx.close()
-    
-    
+    return stra
+
+
 def printall():
-        
+
     import datetime
     import mysql.connector
 
@@ -148,22 +148,22 @@ def printall():
         else:
             stra+=",{\"title\":\""+title+"\", \"description\":\""+description+"\", \"senRate\":"+str(senRate)+", \"readRate\":"+str(readRate)+", \"url\":\""+url+"\", \"category\":\""+category+"\", \"readby\":\""+readby+"\"}"
     stra+="]"
-    print(stra)
 
     cursor.close()
     cnx.close()
-    
-    
-    
+    return stra
+
+
+
 def call_search(arg):
-    if arg==0:
-        printall()
-    if arg==1:
-        below_5()
-    if arg==2:
-        f5_to_10()
-    if arg==3:
-        f10_to_15()
-    if arg==4:
-        above_15()
-    
+    if arg=='0':
+        return printall()
+    if arg=='1':
+        return below_5()
+    if arg=='2':
+        return f5_to_10()
+    if arg=='3':
+        return f10_to_15()
+    if arg=='4':
+        return above_15()
+
