@@ -12,7 +12,7 @@ TABLES['demo'] = (
     "  `description` varchar(10000) NOT NULL,"
     "  `senRate` float NOT NULL,"
     "  `readRate` float NOT NULL,"
-    "  `url` varchar(1000) NOT NULL,"
+    "  `url` varchar(500) NOT NULL,"
     "  `category` varchar(100) NOT NULL,"
     "  `readby` varchar(100) NOT NULL,"
     "  PRIMARY KEY (`url`)"
@@ -32,7 +32,7 @@ def create_database(cursor):
         exit(1)
 
 try:
-    cnx.database = DB_NAME    
+    cnx.database = DB_NAME
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_BAD_DB_ERROR:
         create_database(cursor)
@@ -40,7 +40,7 @@ except mysql.connector.Error as err:
     else:
         print(err)
         exit(1)
-        
+
 for name, ddl in TABLES.iteritems():
     try:
         print("Creating table {}: ".format(name))

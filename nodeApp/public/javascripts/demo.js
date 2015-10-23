@@ -11,7 +11,7 @@ function add(data) {
 
   // Unique id for the rows, remove all non alphabets and numbers
   id = data.url.replace(/[^A-Za-z0-9]/g, '');
-  var htmlResult = '<tr class=\"'+id+'\"><td>'+'<a href=\"'+data.url+'\" target=\"_blank\">'+ data.title+'</a>'+'</td><td>'+data.description+'</td><td>'+data.senRate+'</td><td>'+data.readRate+'</td><td>'+data.read+'</td><td><button>Delete</button></td></tr>';
+  var htmlResult = '<tr class=\"'+id+'\"><td>'+'<a href=\"'+data.url+'\" target=\"_blank\">'+ data.title+'</a>'+'</td><td>'+data.description+'</td><td>'+data.senRate+'</td><td>'+data.readRate+'</td><td>'+data.readby+'</td><td><button>Delete</button></td></tr>';
 
   $('#newsTable').append(htmlResult);
 
@@ -40,7 +40,6 @@ function add(data) {
 // Readability Query
 $('#readDrop').change(function() {
   var number = $(this).find('option:selected').attr('data-number');
-  alert(number);
   var readQueryPosting = $.post('/users/readQuery', {'type': number});
   readQueryPosting.done(function(data){
     // Will arrive in array form

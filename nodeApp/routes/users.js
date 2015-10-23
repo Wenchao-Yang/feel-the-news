@@ -21,7 +21,7 @@ router.post('/analyzeURL', function(req, res, next) {
 /* Receive POST crawl BBC World */
 router.post('/crawlBBCWorld', function(req, res, next) {
     console.log('Received: BBC Crawl');
-    var dummy = [{'title': 'beeboo', 'description': 'blublu', 'senRate': '-', 'readRate': '0.2', 'url': 'blayyy', 'read': 'Unread'}, {'title': 'babbu', 'description': 'a15462', 'senRate': '-', 'readRate': '0.6', 'url': 'asdfasdfa', 'read': 'Unread'},{'title': 'bibibibib', 'description': 'lalallaa', 'senRate': '-', 'readRate': '0.9', 'url': 'huhuhuhuh', 'read': 'Unread'}]; 
+    var dummy = [{'title': 'beeboo', 'description': 'blublu', 'senRate': '-', 'readRate': '0.2', 'url': 'blayyy', 'readby': 'Unread'}, {'title': 'babbu', 'description': 'a15462', 'senRate': '-', 'readRate': '0.6', 'url': 'asdfasdfa', 'readby': 'Unread'},{'title': 'bibibibib', 'description': 'lalallaa', 'senRate': '-', 'readRate': '0.9', 'url': 'huhuhuhuh', 'readby': 'Unread'}]; 
     res.json(dummy);
 });
 
