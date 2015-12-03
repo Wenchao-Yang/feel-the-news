@@ -47,6 +47,4 @@ def any_crawl(url):
             description=tempdesc['content']
     if description=='':
         description=content[:100]
-    print title
-    print content
-    print description
+    return [title, content, description]
