@@ -85,24 +85,9 @@ def total_cnn_crawl():
                 description.append(arr[2])
                 content.append(arr[3])
                 category.append(arr[4])
-    
-
-    return [URL,title,time,description,content,category]
-
-def total_cnn_entertain_crawl():
-    from io import StringIO
-    import urllib
-    from bs4 import BeautifulSoup
     handle=urllib.urlopen("http://www.cnn.com/entertainment")
-    
     bbcnewscontent=handle.read()
     handle.close()
-    URL=[]
-    title=[]
-    time=[]
-    description=[]
-    content=[]
-    category=[]
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('span', attrs={'class':'cd__headline-text'}):
         url=hit.previous['href']
@@ -117,9 +102,6 @@ def total_cnn_entertain_crawl():
                 description.append(arr[2])
                 content.append(arr[3])
                 category.append(arr[4])
-    
-    
-
     return [URL,title,time,description,content,category]
 
 def total_cnn_money_crawl():

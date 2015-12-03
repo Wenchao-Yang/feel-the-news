@@ -75,24 +75,9 @@ def total_bbc_crawl():
                 description.append(arr[2])
                 content.append(arr[3])
                 category.append(arr[4])
-
-
-    print [URL,title,time,description,content,category]
-    
-def total_bbc_sport_crawl():
-    from io import StringIO
-    import urllib
-    from bs4 import BeautifulSoup
     handle=urllib.urlopen("http://www.bbc.com/sport/0/")
-
     bbcnewscontent=handle.read()
     handle.close()
-    URL=[]
-    title=[]
-    time=[]
-    description=[]
-    content=[]
-    category=[]
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a',  href=True):
         url=hit['href']
@@ -107,6 +92,4 @@ def total_bbc_sport_crawl():
                 description.append(arr[2])
                 content.append(arr[3])
                 category.append(arr[4])
-
-
     return [URL,title,time,description,content,category]

@@ -52,5 +52,5 @@ def total_time_crawl():
                     description.append(arr[2])
                     content.append(arr[3])
                     category.append(arr[4])
-    return [URL,arr,title,time,description,content,category]
+    return [URL,title,time,description,content,category]
 

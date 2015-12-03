@@ -25,6 +25,7 @@ def specific_abc_crawl(url):
         content=tempcon.text
     if content=='':
         return None
+    print 'yes'
     return [title,time,description,content,category]
 
 
@@ -55,23 +56,9 @@ def total_abc_crawl():
                 description.append(arr[2])
                 content.append(arr[3])
                 category.append(arr[4])
-    return [URL,arr,title,time,description,content,category]
-
-
-
-def total_abc_health_crawl():
-    from io import StringIO
-    import urllib
-    from bs4 import BeautifulSoup
     handle=urllib.urlopen("http://abcnews.go.com/Health")
     bbcnewscontent=handle.read()
     handle.close()
-    URL=[]
-    title=[]
-    time=[]
-    description=[]
-    content=[]
-    category=[]
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
@@ -86,21 +73,9 @@ def total_abc_health_crawl():
                 description.append(arr[2])
                 content.append(arr[3])
                 category.append(arr[4])
-    return [URL,arr,title,time,description,content,category]
-
-def total_abc_tech_crawl():
-    from io import StringIO
-    import urllib
-    from bs4 import BeautifulSoup
     handle=urllib.urlopen("http://abcnews.go.com/Technology")
     bbcnewscontent=handle.read()
     handle.close()
-    URL=[]
-    title=[]
-    time=[]
-    description=[]
-    content=[]
-    category=[]
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
@@ -115,22 +90,9 @@ def total_abc_tech_crawl():
                 description.append(arr[2])
                 content.append(arr[3])
                 category.append(arr[4])
-    return [URL,arr,title,time,description,content,category]
-
-
-def total_abc_politic_crawl():
-    from io import StringIO
-    import urllib
-    from bs4 import BeautifulSoup
     handle=urllib.urlopen("http://abcnews.go.com/Politics")
     bbcnewscontent=handle.read()
     handle.close()
-    URL=[]
-    title=[]
-    time=[]
-    description=[]
-    content=[]
-    category=[]
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
@@ -145,21 +107,9 @@ def total_abc_politic_crawl():
                 description.append(arr[2])
                 content.append(arr[3])
                 category.append(arr[4])
-    return [URL,arr,title,time,description,content,category]
-
-def total_abc_entertain_crawl():
-    from io import StringIO
-    import urllib
-    from bs4 import BeautifulSoup
     handle=urllib.urlopen("http://abcnews.go.com/Entertainment")
     bbcnewscontent=handle.read()
     handle.close()
-    URL=[]
-    title=[]
-    time=[]
-    description=[]
-    content=[]
-    category=[]
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
@@ -174,4 +124,4 @@ def total_abc_entertain_crawl():
                 description.append(arr[2])
                 content.append(arr[3])
                 category.append(arr[4])
-    return [URL,arr,title,time,description,content,category]
+    return [URL,title,time,description,content,category]
