@@ -4,6 +4,7 @@ __author__ = 'yang'
 import json
 from collections import defaultdict
 import numpy as np
+import NB_basicProcess as bp
 
 # TODO: check whether remove stopwords will improve prediction accuracy
 
@@ -48,6 +49,7 @@ class NBtrain(object):
 
         self.total_doc = sum(self.prior_dict.values())
         self.total_vocab = len(self.vocabulary)
+        self.project = project
 
 
 class NBtest(object):
@@ -86,12 +88,24 @@ class NBtest(object):
             prob_word = defaultdict(float)
 
         self.prob = unnorm_prob.copy()
+
+        v=list(self.prob.values())
+        k=list(self.prob.keys())
+        self.final_class = k[v.index(max(v))]
+
+
+        if train.project == 'sentiment':
+            C = self.prob['positive'] - self.prob['negative']
+            P = np.exp(C)/(np.exp(C)+1)
+
+            if P>0.4 and P<0.6:
+                self.final_class = 'neutral'
+
         # self.prob.update( (x, np.e**y  ) for x, y in self.prob.items())
         # total_prob = sum(self.prob.values())
         # self.prob.update( (x, y/total_prob) for x, y in self.prob.items())
 
 
-import basicProcess as bp
 
 
 class NBtext(object ):
@@ -192,10 +206,59 @@ Members of the city council's black caucus, urging for his resignation, cited Ch
 
     result = NBtest(text, train)
     print(result.prob)
+    print(result.final_class)
+
+
+    train = NBtrain('sentiment')
+
+    text = 'it does not work well bad terrible horrible junk useless'
+
+    text = '''The House of Representatives voted Thursday to suspend the program allowing Syrian and Iraqi refugees into the United States. This is cowardice. America has long been the last best hope of refugees.
+
+Whether Hmong and Cuban refugees fleeing communism, Jewish refugees fleeing Nazis, Central Americans fleeing poverty, Irish fleeing famine, Puritans fleeing religious persecution, or any of the other waves of immigrants to reach our shores; all have come here and given the best of their cultures and their lives to make America what it is today.
+
+We are all refugees, we are all immigrants, and Middle Eastern refugees fleeing ISIS are no different from those of us fortunate enough to have arrived earlier. Shame on local congressmen Doug LaMalfa and John Garamendi for this cowardly vote.'
+'''
+
+    text = '''Eleven refugees, including six children – four of them babies – drowned on Sunday off the Greek island of Samos, coastguards said.
+
+Ten of the dead were found in the cabin of their boat, which overturned as it made the hazardous crossing from the Turkish coast.
+
+The other victim, a young girl, was washed up on the island. Dozens of refugees trying to reach Europe have died in the waters around the Greek islands in recent days.
+
+Two other people were still missing, with coastguards saying 15 were plucked from the water after the boat capsized only 20 metres from the shore.
+
+ I made an SOS call for the Aegean refugees. Now I’m lost for words
+Justine Swaab
+ Read more
+The sinking adds to a string of migrant boat tragedies since Monday off the Greek islands of Lesbos, Kalymnos and Rhodes in which more than 60 people have drowned, at least 28 of them children.
+
+On Friday 22 people, including 17 children, lost their lives trying to cross to the eastern Aegean islands from Turkey, where more than 2 million Syrian refugees have fled to.
+
+That followed another dark day on Wednesday when 24 migrants – 11 of them children – died in five shipwrecks off Lesbos, Samos and Agathonisi.
+
+
+Lesbos volunteer tells of 'huge amount of trauma' as refugee boats capsize
+ Read more
+With the arrival of rough winter weather, and fears that Europe will soon close its doors to refugees, more than 80 people – most of them children – have drowned trying to reach Greece in October.
+
+Since the beginning of the year, 580,125 migrants have landed on Greece’s shores, according to the UN’s refugee agency, with a total of 723,221 crossing the Mediterranean to Europe.'''
+
+
+    #text = '''This is a sad story I don't know what to do . please help me'''
+
+    #text = 'this is a very good story i like it very much Thank you'
+
+
+    text = '''I was looking forward to purchasing this item until I got to the final step of the order process where it shows the shipping cost.  The cheapest shipping would run me 14.99 for an item costing 21.89.  Sorry WeatherBuffs, you lost a sale due to your ridiculous shipping price.
+'''
+
+    text = '''For me, the LaCrosse Technology WT-3122A 12-Inch Wood Atomic Analog Clock is of little value.  I talked with a friend living in Colorado who is very satisfied with an equivalent clock, but I am in New York and much further away from the transmitter and it just doesn't work to my satisfaction.  When it was first put on the wall in the kitchen and didn't work for several days, I contacted technical support.  They suggested I put the clock in a window.  I followed their suggestion and after 2 days the clock was set correctly.  I moved it back to the kitchen wall and now 7 days after the change to daylight savings it's still on eastern standard time.  I didn't purchase this clock to hang in my window.  I need a clock in the kitchen.  As soon as I can find a suitable replacement this one is going into the garbage where it belongs'''
+
+    text = 'good or bad'
 
 
 
-    
-
-    #result = NBtest(text, train)
-    #print(result.prob)
+    result = NBtest(text, train)
+    print(result.prob)
+    print(result.final_class)

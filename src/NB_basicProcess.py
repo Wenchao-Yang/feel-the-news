@@ -29,6 +29,8 @@ def removePunc(s):
 from nltk.corpus import stopwords
 cachedStopWords = stopwords.words("english")
 def removeStop(text):
+    import warnings
+    warnings.filterwarnings("ignore")
     return ' '.join([word for word in text.split() if word not in cachedStopWords])
 
 
@@ -48,7 +50,7 @@ def stem(text):
         try:
             word = porter_stemmer.stem(word)
         except UnicodeDecodeError:
-            print(word)
+            # print(word)
             continue
         # if isinstance(word,str):
 
