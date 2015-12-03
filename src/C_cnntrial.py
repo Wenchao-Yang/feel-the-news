@@ -21,6 +21,10 @@ def specific_cnn_crawl(url):
         content=content+hit.text
     if content=='':
         return None
+    if description==''
+        return None
+    if title==''
+        return None
     print 'yes'
     return [title,time,description,content,category]
 
@@ -47,7 +51,10 @@ def specific_cnn_money_crawl(url):
     tempcon=parsed_html.find('div', attrs={'id': 'storytext'})
     if tempcon==None:
         return None
-    
+    if description==''
+        return None
+    if title==''
+        return None
     [x.extract() for x in tempcon.findAll('script')]
     [x.extract() for x in tempcon.findAll('figure')]
     [x.extract() for x in tempcon.findAll('style')]

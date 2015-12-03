@@ -22,6 +22,10 @@ def specific_time_crawl(url):
         return None
     [x.extract() for x in temp.findAll('script')]
     content=temp.text
+    if description==''
+        return None
+    if title==''
+        return None
     return [title,time,description,content,category]
 
 

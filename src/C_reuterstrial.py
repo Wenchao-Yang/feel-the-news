@@ -24,6 +24,12 @@ def specific_reuters_crawl(url):
     if tempcon==None:
         return None
     content=tempcon.text
+    if content==''
+        return None
+    if description==''
+        return None
+    if title==''
+        return None
     return [title,time,description,content,category]
 
 

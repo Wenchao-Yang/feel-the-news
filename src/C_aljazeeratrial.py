@@ -20,6 +20,12 @@ def specific_aljamerica_crawl(url):
         return None
     for hit in tempcon.findAll('p'):
         content=content+hit.text
+    if content==''
+        return None
+    if description==''
+        return None
+    if title==''
+        return None
     return [title,time,description,content,category]
 
 

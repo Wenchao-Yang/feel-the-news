@@ -26,6 +26,10 @@ def specific_newscie_crawl(url):
         content=tempcon.text
     if content=='':
         return None
+    if description==''
+        return None
+    if title==''
+        return None
     return [title,time,description,content,category]
 
 

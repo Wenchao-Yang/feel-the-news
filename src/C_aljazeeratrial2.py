@@ -29,6 +29,10 @@ def specific_aljnew_crawl(url):
             content=content+hit.text
     if content=='':
         return None
+    if description==''
+        return None
+    if title==''
+        return None
     return [title,time,description,content,category]
 
 

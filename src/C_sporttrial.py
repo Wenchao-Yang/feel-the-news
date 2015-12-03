@@ -26,6 +26,10 @@ def specific_sport_crawl(url):
         content=tempcon.text
     if content=='':
         return None
+    if description==''
+        return None
+    if title==''
+        return None
     print 'yes'
     return [title,time,description,content,category]
 

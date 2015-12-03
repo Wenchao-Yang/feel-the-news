@@ -36,7 +36,10 @@ def any_crawl(url):
             maxnum=len(hit.text)
             parent=hit.parent
             parentnum=len(parent.text)
-            
+    
+    
+    if parent=None:
+        return None
     tempparent=parent
     tempparentsib=maxp.findPreviousSibling(tempparent.name)
     if tempparentsib==None:
@@ -48,9 +51,9 @@ def any_crawl(url):
             parent=tempparent.parent
     content=parent.text
     temptitle=parsed_html.title
-    title=''
-    if temptitle!=None:
-        title=temptitle.text
+    if temptitle==None:
+        return None
+    title=temptitle.text
         
     description=''
     tempdesc=parsed_html.find('meta', attrs={'name': 'description'})
