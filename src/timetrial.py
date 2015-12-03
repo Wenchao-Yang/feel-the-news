@@ -48,4 +48,3 @@ def total_time_crawl():
                     category.append(arr[4])
     return [URL,arr,title,time,description,content,category]
 
-total_time_crawl()

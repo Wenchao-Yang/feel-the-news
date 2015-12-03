@@ -120,7 +120,7 @@ def total_cnn_entertain_crawl():
     
     
 
-    print [URL,title,time,description,content,category]
+    return [URL,title,time,description,content,category]
 
 def total_cnn_money_crawl():
     from io import StringIO
@@ -152,8 +152,5 @@ def total_cnn_money_crawl():
                 category.append(arr[4])
     
 
-    print [URL,title,time,description,content,category]
+    return [URL,title,time,description,content,category]
 
-
-
-total_cnn_entertain_crawl()

@@ -106,5 +106,4 @@ def total_bbc_sport_crawl():
                 category.append(arr[4])
 
 
-    print [URL,title,time,description,content,category]
-specific_bbc_crawl('http://www.bbc.com/earth/story/20151130-how-hot-could-the-earth-get')
+    return [URL,title,time,description,content,category]

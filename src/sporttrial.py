@@ -57,5 +57,4 @@ def total_sport_crawl():
                 description.append(arr[2])
                 content.append(arr[3])
                 category.append(arr[4])
-    print [URL,arr,title,time,description,content,category]
-total_sport_crawl()
+    return [URL,arr,title,time,description,content,category]

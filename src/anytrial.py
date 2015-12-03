@@ -38,4 +38,3 @@ def any_crawl(url):
         title=temptitle.text
     print title
     print content
-any_crawl('http://money.cnn.com/2015/12/02/media/chris-christie-star-ledger-crazy-ex-girlfriend/index.html?iid=hp-grid-dom') 
