@@ -17,19 +17,15 @@ def UserUrlInput(url):
     if url.startswith("http://")!=True and url.startswith("https://")!=True:
         url="http://"+url
     print url
-    
+    headers = {
+    'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'
+    }
+    req = urllib2.Request(url,data = None,headers = headers)
     try: 
-        response = urllib2.urlopen(url)
+        response = urllib2.urlopen(req)
     except urllib2.HTTPError, err:
-        if err.code == 404:
-            print "Page not found!"
-        elif err.code == 403:
-            print "Access denied!"
-        else:
-            print "Something happened! Error code", err.code
         return None
     except urllib2.URLError, err:
-        print "Some other error happened:", err.reason
         return None
     arr=None
     if url.find("abcnews.go.com")!=-1:
@@ -60,7 +56,6 @@ def UserUrlInput(url):
     if arr==None:
         arr=any_crawl(url)
     return arr
-
 
 
 
