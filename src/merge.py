@@ -1,7 +1,7 @@
 ''' This file is to combine crawler with the analyzer
 '''
 
-from readbility import Text
+from R_readbility import Text
 import json
 
 def one_website_return(url):

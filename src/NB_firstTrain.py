@@ -4,7 +4,7 @@ __author__ = 'yang'
 import os
 from collections import defaultdict
 import json
-from NaiveBayes import NBtext
+from NB_NaiveBayes import NBtext
 
 # only used when you train the model for the first time
 def rawDataProcess(classes, classes_dir, current_dir, project = 'category'):
