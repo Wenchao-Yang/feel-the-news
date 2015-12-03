@@ -36,5 +36,17 @@ def any_crawl(url):
     title=''
     if temptitle!=None:
         title=temptitle.text
+        
+    description=''
+    tempdesc=parsed_html.find('meta', attrs={'name': 'description'})
+    if tempdesc!=None:
+        description=tempdesc['content']
+    else:
+        tempdesc=parsed_html.find('meta', attrs={'property': 'og:description'})
+        if tempdesc!=None:
+            description=tempdesc['content']
+    if description=='':
+        description=content[:100]
     print title
     print content
+    print description

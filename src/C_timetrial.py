@@ -6,10 +6,16 @@ def specific_time_crawl(url):
     bbcnewscontent=handle.read()
     handle.close()
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
-    title=parsed_html.title.text
-    time=parsed_html.find('time')['datetime']
-    description=parsed_html.find('meta', attrs={'name': 'description'})['content']
-    category=parsed_html.find('a', attrs={'class': 'section-tag'}).text
+    temptitle=parsed_html.title
+    title=''
+    if temptitle!=None:
+        title=parsed_html.title.text
+    time=''
+    tempdescription=parsed_html.find('meta', attrs={'name': 'description'})
+    description=''
+    if tempdescription!=None:
+        description=parsed_html.find('meta', attrs={'name': 'description'})['content']
+    category=''
 
     temp=parsed_html.find('div', attrs={'class': 'clipper-content'})
     if temp==None:

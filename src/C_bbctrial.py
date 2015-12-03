@@ -35,7 +35,10 @@ def specific_bbc_crawl(url):
     if tempdes!=None:
         description=tempdes['content']
     time=''
-    title=parsed_html.find('title').text
+    temptitle=parsed_html.find('title')
+    title=''
+    if temptitle!=None:
+        title=temptitle.text
     print 'yes'
     return [title,time,description,content,category]
 

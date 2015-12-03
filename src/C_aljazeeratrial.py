@@ -7,16 +7,17 @@ def specific_aljamerica_crawl(url):
     handle.close()
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     tempall=parsed_html.find('div', attrs={'class': 'shareDiv'})
-    title=tempall['data-title']
-    time=parsed_html.find('span', attrs={'class': 'date'}).text
-    description=tempall['data-description']
-    tempcat=parsed_html.find('a', attrs={'class': "articleOpinion-topicTag articleWidth-topicTag js-toggle--fade"})
-    if tempcat==None:
-        category=''
-    else:
-        category=tempcat.text
+    title=''
+    description=''
+    if tempall!=None:
+        title=tempall['data-title']
+        description=tempall['data-description']
+    time=''
+    category=''
     tempcon=parsed_html.find('div', attrs={'class': 'parsys mainpar'})
     content=''
+    if tempcon==None:
+        return None
     for hit in tempcon.findAll('p'):
         content=content+hit.text
     return [title,time,description,content,category]
