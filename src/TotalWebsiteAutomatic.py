@@ -17,10 +17,10 @@ def total_web_dump(arr, domain):
         text = arr[4][i].encode('utf-8')
         Read_text = Text(text) # For readability
 
-        one_article = {"url":arr[0][i], "title": arr[1][i], "description": arr[3][i], "category": "null", "readability": 0, "sentiment": "null" }
+        one_article = {"url":arr[0][i], "title": arr[1][i], "description": arr[3][i], "category": "null", "readRate": 0, "senRate": "null" }
         one_article["category"] = NBtest(text, Cat_train).final_class
-        one_article["sentiment"] = NBtest(text, Senti_train).final_class
-        one_article["readability"] = Read_text.avg_grade()
+        one_article["senRate"] = NBtest(text, Senti_train).final_class
+        one_article["readRate"] = Read_text.avg_grade()
 
         all_info.append(one_article)
 

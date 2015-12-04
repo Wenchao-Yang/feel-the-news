@@ -159,7 +159,7 @@ if __name__ == '__main__':
     genDict(classes = classes, current_dir = current_dir, project='category')
     '''
 
-    current_dir = '/Users/yang/PycharmProjects/feel-the-news/naiveBayes'
+    current_dir = '/Users/yang/PycharmProjects/feel-the-news/src'
     classes = ['negative', 'positive']
 
     classes_dir = ['/Users/yang/Box Sync/UIUC/1 CS 411/project/sentiment/negative',
