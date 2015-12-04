@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var spawn = require('child_process').spawn;
+var models = require('../models');
 
 
 /* GET users listing. */
@@ -17,39 +18,70 @@ router.post('/analyzeURL', function(req, res, next) {
     });
 });
 
-/* Receive POST crawl BBC World */
-router.post('/crawlBBCWorld', function(req, res, next) {
-    console.log('Received: BBC Crawl');
-    var py = spawn('python', ['../crawler/BBCCrawlAdd.py']);
-    py.stdout.on('data', function(data) {
-        res.json(JSON.parse(data));
+/* Receive POST like */
+router.post('/like', function(req, res, next) {
+    console.log('Received: Like ' + req.body.url + ' by ' + req.user.firstName);
+    models.like(req.body.url, req.user.email, function(err) {
+        if (err) {
+            console.log(err);
+        }
     });
 });
 
-/* Receive POST delete */
-router.post('/remove', function(req, res, next) {
-    console.log('Received: Remove Request ' + req.body.url);
-    //DO REMOVE HERE
-    var py = spawn('python', ['../crawler/deleteURL.py', req.body.url]);
-    res.send('Removed');
+/* Receive POST Remove like */
+router.post('/removeLike', function(req, res, next) {
+    console.log('Received: Remove Like ' + req.body.url + ' by ' + req.user.firstName);
+    models.removeLike(req.body.url, req.user.email, function(err) {
+        if (err) {
+            console.log(err);
+        }
+    });
 });
 
-/* Receive POST update Read */
-router.post('/updateRead', function(req, res, next) {
-    console.log('Received: Update Read Request ' + req.body.url);
-    //DO UPDATE HERE
-    var py = spawn('python', ['../crawler/updateRead.py', req.body.url]);
-    res.send('Read Updated');
+/* Receive POST Get likes URL */
+router.post('/getLikesURL', function(req, res, next) {
+    console.log('Received: Get Likes URL by ' + req.user.firstName);
+    models.getLikes(req.user.email, function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        res.json(result);
+    });
+});
+
+/* Receive POST Get likes URL */
+router.post('/getLikes', function(req, res, next) {
+    console.log('Received: Get Likes by ' + req.user.firstName);
+    models.getLikes(req.user.email, function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        res.json(result);
+    });
+});
+
+/* Receive POST Get User added articles */
+router.post('/getUserAddedArticles', function(req, res, next) {
+    console.log('Received: Get Articles Added by ' + req.user.firstName);
+    models.getUserAddedArticles(req.user.email, function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        res.json(result);
+    });
 });
 
 /* Receive POST Query */
-router.post('/readQuery', function(req, res, next) {
-    console.log('Received: Readability Query Request ' + req.body.type);
-    //DO UPDATE HERE
-    var py = spawn('python', ['../crawler/readQuery.py', req.body.type]);
-    py.stdout.on('data', function(data) {
-        console.log(JSON.parse(data));
-        res.json(JSON.parse(data));
+router.post('/normalQuery', function(req, res, next) {
+    console.log(req);
+    console.log('Received: Normal Query Request ' + JSON.stringify(req.body));
+    //WATCH OUT: res overwrite
+    models.articlesQuery(req.body, function(err, result) {
+        if (err) {
+            console.log(err);
+        }
+        console.log(result);
+        res.json(result);
     });
 });
 

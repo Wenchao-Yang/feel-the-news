@@ -1,22 +1,25 @@
-//doctype html
-//html
-//  head
-//    title= title
-//    link(rel='stylesheet', href='/stylesheets/style.css')
-//  body
-//    block content
+block vars
 doctype html
 html
+  link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
   link(rel='stylesheet', href='/stylesheets/style.css')
+  block style
   head
     script(src="https://code.jquery.com/jquery-1.10.2.js")
-    - var title = 'FeelTheNews'
-    title= title
+    title #{title}
   .nav
     ul
       li.home
-        a(href='/') Home
+        a(href='/interface') Home
       li.about
         a(href='/') About
+      li.likes
+        a(href='/myLikes') My Likes
+      li.added
+        a(href='/myArticles') My Articles
+      li.account
+        a(href='/myAccount') My Account
+      li.logout
+        a(href='/logout') Log Out
   body
     block content

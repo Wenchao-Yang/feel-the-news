@@ -1,0 +1,22 @@
+- var title = 'Login'
+doctype html
+html
+  link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  link(rel='stylesheet', href='/stylesheets/signin.css')
+  head
+    script(src="https://code.jquery.com/jquery-1.10.2.js")
+    title #{title}
+  body
+    if error
+      p ERROR: #{error}
+
+    form(class="form-signin", method="post")
+      h2(class="form-signin-heading")
+        | Sign in to Feel The News
+      input(type="hidden", name="_csrf", value=csrfToken)
+      input(type="email", name="email", class="form-control", placeholder="Email address", required=true)
+      input(type="password", name="password", class="form-control", placeholder="Password", required=true)
+
+      button(class="btn btn-lg btn-primary btn-block", type="submit")
+        |Sign in

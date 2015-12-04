@@ -1,45 +1,9 @@
 extends layout
 block content
-  p(id='description')
-    | Welcome to FeelTheNews
+  h1(style="text-align: center") Feel The News
+  p(style="text-align: center")
+    | We are Victor Yang, Sushan Jian and Ping-Ko Chiu. Welcome to Feel The News.
     br
-    | Please enter a URL for us to crawl and analyze.
-  div(style='margin-left:40px')
-    button(id='crawlBBC')
-      | Crawl BBC World News
-    form(action='/users/analyzeURL', id='urlInput')
-      | AnalyzeURL: 
-      input(type='text', name='urlQuery', placeholder='News Source URL...')
-      input(type='submit', value='Submit')
-  div.readSelect(style='margin-left:40px')
-    | Readability Selector: 
-    select(id='readDrop')
-      option(data-number='0')
-        | All
-      option(data-number='1')
-        | < 5
-      option(data-number='2')
-        | 5 - 10
-      option(data-number='3')
-        | 10 - 15
-      option(data-number='4')
-        | > 15
-  div
-    // News Table
-    table(cellspacing='0', id='newsTable')
-      thead
-        tr
-          th
-            | Article
-          th
-            | Description
-          th
-            | Sentiment Score
-          th
-            | Readability Rating
-          th
-            | Read/ Unread
-          th
-            | Delete
-      tbody(id='newsStats')
-  script(src='/javascripts/demo.js')
+    | Feel The News brings you statistical analysis of news articles and allows you to find the news you like to read!
+    br
+    | Please <a href="/register">register</a> or <a href="/login">login</a>!

@@ -4,7 +4,7 @@ body {
   padding: 0;
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: #CCC
+  background: #EEE;
 }
 
 .nav ul {
@@ -20,6 +20,7 @@ body {
   font-size: 1.2em;
   line-height: 40px;
   height: 40px;
+  width: 100px;
   border-bottom: 1px solid #888;
 }
 
@@ -61,10 +62,23 @@ body {
   margin-left:40px;
   font-size: 1.5em;
   font-weight: bold;
-  font-family: 'Osawald', sans-serif;
+  font-family: 'Osawald', 'sans-serif';
+  text-align: center;
 
 }
 
+div.normalQuery {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+
+div.analyze {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
 
 
 /* Table Styles */
@@ -90,9 +104,10 @@ table {
   font-size:12px;
   text-shadow: 1px 1px 0px #fff;
   background:#eaebec;
-  margin: 20px;
-  margin-left:auto;
-  margin-right:auto;
+  margin: 30px;
+  margin-left:50px;
+  margin-right:50px;
+  margin: 0 auto;
   border:#ccc 1px solid;
 
   -moz-border-radius:3px;
@@ -109,8 +124,8 @@ table th {
   border-bottom:1px solid #e0e0e0;
 
   background: #ededed;
-  background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
-  background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+  background: -webkit-gradient(linear, left top, left bottom, from(#dfdfdf), to(#dddddd));
+  background: -moz-linear-gradient(top,  #dfdfdf,  #dddddd);
 }
 table th:first-child {
   text-align: left;
@@ -168,4 +183,3 @@ table tr:hover td {
   background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
   background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);  
 }
-

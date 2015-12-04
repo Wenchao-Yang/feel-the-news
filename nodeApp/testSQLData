@@ -1,0 +1,9 @@
+INSERT INTO articles (title, description, senRate, readRate, url, category, domain) VALUES ('booboo', 'lalala', 'Positive', 10.5, 'www.lalala.com/asdf', 'Sports', 'www.lalala.com');
+
+INSERT INTO articles (title, description, senRate, readRate, url, category, domain) VALUES ('asdfadfd', 'lbbbbbababa', 'Neutral', 5.5, 'www.adfjfj.com/jffj', 'Technology', 'www.asdfjasdfj.com');
+
+INSERT INTO articles (title, description, senRate, readRate, url, category, domain) VALUES ('pkc', 'cs411', 'Negative', 15, 'www.bobobob.com/asdfff', 'Politics', 'www.bobobo.com');
+
+INSERT INTO articles (title, description, senRate, readRate, url, category, domain) VALUES ('Sushan Jiang', 'llaaaaaaaaaaalalderqwetqwiutoqwerh', 'Negative', 1.5, 'www.wiwiwifkfk.com/asdjdj', 'Entertainment', 'www.dkfjkf.com');
+
+INSERT INTO articles (title, description, senRate, readRate, url, category, domain) VALUES ('Victor Yang', 'asdjfjfjffjfjdajaj', 'Positive', 7, 'www.rtyuiuyuiu.com/99v9v9vv9', 'Business', 'www.dkfjkf.com');

@@ -1,0 +1,26 @@
+extends layout
+block content
+  meta(type="hidden", name="_csrf", value=csrfToken)
+  p(id='description')
+    | Articles You Like:
+    br
+
+  div
+    // News Table
+    table(cellspacing='0', id='newsTable')
+      thead
+        tr
+          th
+            | Article
+          th
+            | Description
+          th
+            | Sentiment
+          th
+            | Readability Rating
+          th
+            | Category Rating
+          th
+            | Like
+      tbody(id='newsStats')
+  script(src='/javascripts/mylikes.js')

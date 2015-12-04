@@ -1,0 +1,35 @@
+extends layout
+block content
+  meta(type="hidden", name="_csrf", value=csrfToken)
+
+  p(id='description')
+    | Add a news url to anaylze now!
+    br
+  div.analyze(style='margin-left:40px')
+    form(action='/users/analyzeURL', id='urlInput')
+      | AnalyzeURL: 
+      input(type='text', name='urlQuery', placeholder='News Source URL...')
+      input(type='submit', value='Analyze!')
+  p(id='description')
+    | Articles You Added:
+    br
+
+  div
+    // News Table
+    table(cellspacing='0', id='newsTable')
+      thead
+        tr
+          th
+            | Article
+          th
+            | Description
+          th
+            | Sentiment
+          th
+            | Readability Rating
+          th
+            | Category Rating
+          th
+            | Like
+      tbody(id='newsStats')
+  script(src='/javascripts/myarticles.js')

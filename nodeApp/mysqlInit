@@ -1,0 +1,46 @@
+USE feelthenews;
+
+CREATE TABLE IF NOT EXISTS articles (
+    title varchar(100) NOT NULL,
+    description varchar(1000) NOT NULL,
+    senRate varchar(10) NOT NULL,
+    readRate float NOT NULL,
+    url varchar(500) NOT NULL,
+    category varchar(20) NOT NULL,
+    date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    domain varchar(100) NOT NULL,
+    PRIMARY KEY (url)
+);
+
+CREATE TABLE IF NOT EXISTS user (
+    firstName varchar(100) NOT NULL,
+    lastName varchar(100) NOT NULL,
+    email varchar(100) NOT NULL,
+    password varchar(200) NOT NULL,
+    PRIMARY KEY (email)
+);
+    
+
+CREATE TABLE IF NOT EXISTS owner (
+    url varchar(500) NOT NULL,
+    email varchar(100) NOT NULL,
+    FOREIGN KEY (url) REFERENCES articles(url),
+    FOREIGN KEY (email) REFERENCES user(email),
+    PRIMARY KEY (url, email)
+);
+
+CREATE TABLE IF NOT EXISTS likes (
+    url varchar(500) NOT NULL,
+    email varchar(100) NOT NULL,
+    FOREIGN KEY (url) REFERENCES articles(url),
+    FOREIGN KEY (email) REFERENCES user(email),
+    PRIMARY KEY (url, email)
+);
+
+CREATE TABLE IF NOT EXISTS domainStats (
+    domain varchar(100) NOT NULL,
+    senRate varchar(10) NOT NULL,
+    readRate float NOT NULL,
+    PRIMARY KEY (domain)
+);
+

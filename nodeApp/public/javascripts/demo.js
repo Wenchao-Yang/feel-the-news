@@ -1,3 +1,15 @@
+var CSRF_HEADER = 'X-CSRF-Token';
+
+var setCSRFToken = function (securityToken) {
+  jQuery.ajaxPrefilter(function (options, _, xhr) {
+    if (!xhr.crossDomain) {
+      xhr.setRequestHeader(CSRF_HEADER, securityToken);
+    }
+  });
+};
+
+setCSRFToken($('meta[name="_csrf"]').attr('value'));
+
 // Populate News Table with Database information
 var getAllPosting = $.post('/users/readQuery', {type: 0});
 getAllPosting.done(function(data) {

@@ -1,0 +1,65 @@
+extends layout
+block content
+  meta(type="hidden", name="_csrf", value=csrfToken)
+  p(id='description')
+    | Welcome to FeelTheNews #{user.firstName}
+    br
+    | Find the perfect news!
+    br
+  div.normalQuery(style='margin-left:40px, text-align:center')
+    | Readability: 
+    select(class='selectDrop', id='readDrop')
+      option
+        | All
+      option(readRateHigh=5)
+        | < 5
+      option(readRateLow=5, readRateHigh=10)
+        | 5 - 10
+      option(readRateLow=10, readRateHigh=15)
+        | 10 - 15
+      option(readRateLow=15)
+        | > 15
+    | Sentiment: 
+    select(class='selectDrop', id='senDrop')
+      option
+        | All
+      option(senRate = 'Positive')
+        | Positive
+      option(senRate = 'Neutral')
+        | Neutral
+      option(senRate = 'Negative')
+        | Negative
+    | Category: 
+    select(class='selectDrop', id='catDrop')
+      option
+        | All
+      option(category = 'Technology')
+        | Technology
+      option(category = 'Sports')
+        | Sports
+      option(category = 'Entertainment')
+        | Entertainment
+      option(category = 'Politics')
+        | Politics
+      option(category = 'Business')
+        | Business
+
+  div
+    // News Table
+    table(cellspacing='0', id='newsTable')
+      thead
+        tr
+          th
+            | Article
+          th
+            | Description
+          th
+            | Sentiment
+          th
+            | Readability Rating
+          th
+            | Category Rating
+          th
+            | Like
+      tbody(id='newsStats')
+  script(src='/javascripts/interface.js')

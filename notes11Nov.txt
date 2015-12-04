@@ -1,0 +1,22 @@
+Advance Function 1: Crawling
+    Define: User inputs article to craw, we should be able to cover most popular news sources.
+    - Checking for whether news source is covered
+        - If not then notify user
+    - Check for duplication
+
+Advance Function 2: Category Clustering
+    Define: User gives article, based on article the program will determine the category
+
+
+Ways for the user to interact with the database:
+    1.  Search key words in description
+    2.  Sentiment, Readability, Category search
+    3.  Provide URL to add to database and Analyze
+    
+    Minor:
+    1.  Show Saved, Read, and added articles
+
+Goals by 19th Nov:
+    Victor: Sentiment and Categorical Analysis
+    Sushan: Crawlers
+    Ping-Ko: User model & Database interaction
