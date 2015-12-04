@@ -5,6 +5,7 @@ import json
 from collections import defaultdict
 import numpy as np
 import NB_basicProcess as bp
+import os
 
 # TODO: check whether remove stopwords will improve prediction accuracy
 
@@ -32,6 +33,7 @@ class NBtrain(object):
         # classes: a list containing the project for each class
         # project: project of this classifier: sentiment, spam, category
 
+        #os.chdir('/home/pingkoc/cs411/project/src/')
         with open('prior_' + project + '.json') as f:
             self.prior_dict = json.load(f)
 

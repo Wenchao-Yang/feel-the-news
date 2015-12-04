@@ -12,10 +12,11 @@ router.get('/', function(req, res, next) {
 /* Receive POST analyze URL */
 router.post('/analyzeURL', function(req, res, next) {
     console.log('Received for analysis:' + req.body.url);
-    var py = spawn('python', ['../src/merge.py', '-u', req.body.url]);
+    var py = spawn('python', ['../src/merge.py', '-u', req.body.url], {
+                    cwd: '/home/pingkoc/cs411/project/src/'});
     py.stdout.on('data', function(data) {
-        //data = JSON.parse(data);
-        console.log(data);
+        data = JSON.parse(data);
+        console.log('Analysis: ' + data);
         models.addArticle(data, function(err) {
             console.log(err);
         });
@@ -23,6 +24,13 @@ router.post('/analyzeURL', function(req, res, next) {
             console.log(err);
         });
         res.json(data);
+    });
+    py.stderr.on('data', function(data) {
+        console.log('stderr: ' + data.toString());
+        res.end('stderr: ' + data);
+    });
+    py.on('close', function(code) {
+        console.log('Child Process Exited with code ' + code);
     });
 });
 

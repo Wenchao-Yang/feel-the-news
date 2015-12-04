@@ -93,7 +93,7 @@ module.exports.articlesQuery = function(queryWhere, callback) {
         queryString += generateWhere(queryWhere);
     queryString +=' ORDER BY date';
     connection.query(queryString, function(err, result) {
-        callback(err, result.slice(0, 19));
+        callback(err, result.slice(0, 9));
     });
 };
 
@@ -155,7 +155,7 @@ module.exports.addArticle = function(articleInfo, callback) {
  * Add Ownership to Article
  */
 module.exports.ownArticle = function(url, email, callback) {
-    connection.query('INSERT INTO own SET url = ?, email = ?', [url, email], function(err) {
+    connection.query('INSERT INTO owner SET url = ?, email = ?', [url, email], function(err) {
         callback(err);
     });
 };
