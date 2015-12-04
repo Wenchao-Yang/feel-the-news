@@ -188,21 +188,37 @@ def many_crawl():
     from io import StringIO
     import urllib
     from bs4 import BeautifulSoup
-    handle=urllib.urlopen("http://www.bbc.com")
+    import datetime
+    import mysql.connector
+    import json
+    cnx = mysql.connector.connect(user='root', password='1111',
+                                  database='trial')
+    cursor = cnx.cursor()
+    
+    handle=urllib.urlopen("http://www.bbc.com/sport/0/")
 
     bbcnewscontent=handle.read()
     handle.close()
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     output=[]
-    for hit in parsed_html.findAll('a', attrs={'class':'media__link'}):
+    for hit in parsed_html.findAll('a',  href=True):
         url=hit['href']
-        if url.startswith('/'):
+        if url.startswith('/') and url.startswith('/sport/'):
             url="http://www.bbc.com"+url
             print url
-            if find_article_duplicate(url)==0 and (len(output)==0 or find_duplicate_in_data(output,url)==False):
+            query = ("SELECT * FROM article WHERE url='"+url+"'")
+            cursor.execute(query)
+            flag=0
+            for (newurl, title) in cursor:
+                flag=1
+            print flag
+            if flag==0 and (len(output)==0 or find_duplicate_in_data(output,url)==False):
                 arr=any_crawl(url)
                 if arr!=None:
                     output.append(arr)
+    
+    cursor.close()
+    cnx.close()
     return output
 
 
