@@ -87,7 +87,7 @@ class Text(object):
         score = 0.4*self.word_count/self.sent_count + 40*self.comp_count/self.word_count
         return round(score, 1)
 
-    def coleman_index(self):
+    def our_index(self):
         '''
         :return: approximates the U.S. grade level thought necessary to comprehend the text.
         '''
@@ -119,7 +119,7 @@ class Text(object):
         Coleman-Liau Index, Automated Readability Index
         Smog will be used only when number of sentences >= 30
         '''
-        sum4 = self.flesch_grade_level() + self.gunning_fog_index() + self.coleman_index() + self.automated_index()
+        sum4 = self.flesch_grade_level() + self.gunning_fog_index() + self.our_index() + self.automated_index()
         if(self.sent_count<30):
             avg = sum4/4
         else:
@@ -153,8 +153,8 @@ if __name__ == '__main__':
     print(text1.gunning_fog_index())
 
     # test: Coleman–Liau index
-    print('Coleman–Liau index: ')
-    print(text1.coleman_index())
+    print('Our index: ')
+    print(text1.our_index())
 
     # test: SMOG
     print('SMOG: ')

@@ -3,7 +3,7 @@ def below_5():
     import mysql.connector
     import json
     cnx = mysql.connector.connect(user='root', password='1111',
-                                  database='start')
+                                  database='trial')
     cursor = cnx.cursor()
     query = ("SELECT * FROM demo "
              "WHERE readRate<5")
@@ -143,3 +143,4 @@ def call_search(arg):
         return f10_to_15()
     if arg=='4':
         return above_15()
+
