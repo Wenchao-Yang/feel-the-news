@@ -39,7 +39,7 @@ router.post('/register', function(req, res) {
       res.render('register.jade', { error: error });
     } else {
       utils.createUserSession(req, res, userInfo);
-      res.redirect('/');
+      res.redirect('/interface');
     }
   });
 });
