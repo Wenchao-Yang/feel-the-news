@@ -16,9 +16,8 @@ def one_website_return(url):
     arr=UserUrlInput(url)
     # return a list containing [title,time,description,content,category]
 
-    Read_text = Text(arr[3].encode('utf-8'))
-
     text = arr[3].encode('utf-8')
+    Read_text = Text(text)
 
     output = {"url":url, "title": arr[0], "description": arr[2], "category": "null", "readability": 0, "sentiment": "null" }
 
@@ -105,3 +104,7 @@ if __name__ == '__main__':
     elapsed_time = time.time() - start_time
     print(elapsed_time)
 
+    start_time = time.time()
+    one_website_print("http://blog.hubspot.com/blog/tabid/6307/bid/34010/How-to-Use-Photoshop-The-Ultimate-Guide-for-the-Design-Impaired-Marketer.aspx")
+    elapsed_time = time.time() - start_time
+    print(elapsed_time)

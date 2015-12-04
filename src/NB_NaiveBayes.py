@@ -57,7 +57,9 @@ class NBtest(object):
     @:param train It is a NBtrain object
     '''
 
-    def __init__(self, text, train):
+    def __init__(self, text, train, limit = 700):
+
+        # limit the maximum number of words to 700
 
         classes = train.classes
 
@@ -67,7 +69,7 @@ class NBtest(object):
 
         # process text first
         text = NBtext(text).text
-        words = text.split()
+        words = text.split()[0:limit]
         # total_words = len(words)
 
         # calculate the un-normalized prob
