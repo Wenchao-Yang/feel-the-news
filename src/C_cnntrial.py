@@ -21,9 +21,9 @@ def specific_cnn_crawl(url):
         content=content+hit.text
     if content=='':
         return None
-    if description==''
+    if description=='':
         return None
-    if title==''
+    if title=='':
         return None
     print 'yes'
     return [title,time,description,content,category]
@@ -51,9 +51,9 @@ def specific_cnn_money_crawl(url):
     tempcon=parsed_html.find('div', attrs={'id': 'storytext'})
     if tempcon==None:
         return None
-    if description==''
+    if description=='':
         return None
-    if title==''
+    if title=='':
         return None
     [x.extract() for x in tempcon.findAll('script')]
     [x.extract() for x in tempcon.findAll('figure')]
@@ -82,7 +82,7 @@ def total_cnn_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('span', attrs={'class':'cd__headline-text'}):
         url=hit.previous['href']
-        if url.startswith('/') and url.find('videos')==-1:
+        if url.startswith('/') and url.find('videos')==-1 and find_duplicate_in_URL(URL,"http://www.cnn.com"+url)==False:
             url="http://www.cnn.com"+url
             arr=specific_cnn_crawl(url)
             if arr!=None:
@@ -98,7 +98,7 @@ def total_cnn_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('span', attrs={'class':'cd__headline-text'}):
         url=hit.previous['href']
-        if url.startswith('/') and url.find('videos')==-1:
+        if url.startswith('/') and url.find('videos')==-1 and find_duplicate_in_URL(URL,"http://www.cnn.com"+url)==False:
             url="http://www.cnn.com"+url
             print url
             arr=specific_cnn_crawl(url)
@@ -128,7 +128,7 @@ def total_cnn_money_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
-        if url.startswith('/2015') and url.find('videos')==-1:
+        if url.startswith('/2015') and url.find('videos')==-1 and find_duplicate_in_URL(URL,"http://money.cnn.com"+url)==False:
             url="http://money.cnn.com"+url
             print url
             arr=specific_cnn_money_crawl(url)
@@ -139,7 +139,11 @@ def total_cnn_money_crawl():
                 description.append(arr[2])
                 content.append(arr[3])
                 category.append(arr[4])
-    
-
     return [URL,title,time,description,content,category]
 
+
+def find_duplicate_in_URL(URL, url):
+    for i in range(len(URL)):
+        if URL[i]==url:
+            return True
+    return False

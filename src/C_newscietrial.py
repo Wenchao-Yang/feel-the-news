@@ -26,9 +26,9 @@ def specific_newscie_crawl(url):
         content=tempcon.text
     if content=='':
         return None
-    if description==''
+    if description=='':
         return None
-    if title==''
+    if title=='':
         return None
     return [title,time,description,content,category]
 
@@ -49,7 +49,7 @@ def total_newscie_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
-        if  (len(URL)==0 or URL[-1].find(url)==-1) and url.find("www.newscientist.com")!=-1 and url.find("/article/")!=-1:
+        if  find_duplicate_in_URL(URL, url)==False and url.find("www.newscientist.com")!=-1 and url.find("/article/")!=-1:
             print url
             arr=specific_newscie_crawl(url)   
             if arr!=None:
@@ -60,3 +60,10 @@ def total_newscie_crawl():
                 content.append(arr[3])
                 category.append(arr[4])
     return [URL,title,time,description,content,category]
+
+
+def find_duplicate_in_URL(URL, url):
+    for i in range(len(URL)):
+        if URL[i]==url:
+            return True
+    return False

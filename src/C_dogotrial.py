@@ -26,9 +26,9 @@ def specific_dogo_crawl(url):
         content=tempcon.text
     if content=='':
         return None
-    if description==''
+    if description=='':
         return None
-    if title==''
+    if title=='':
         return None
     return [title,time,description,content,category]
 
@@ -49,7 +49,7 @@ def total_dogo_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
-        if url.find('/2015/')!=-1 and (len(URL)==0 or URL[-1].find(url)==-1) and url.find("http")==-1 and url.find('#post_comments')==-1:
+        if url.find('/2015/')!=-1 and url.find("http")==-1 and url.find('#post_comments')==-1 and find_duplicate_in_URL(URL, 'http://www.dogonews.com'+url)==False:
             url='http://www.dogonews.com'+url
             print url
             arr=specific_dogo_crawl(url)   
@@ -61,3 +61,11 @@ def total_dogo_crawl():
                 content.append(arr[3])
                 category.append(arr[4])
     return [URL,title,time,description,content,category]
+
+
+
+def find_duplicate_in_URL(URL, url):
+    for i in range(len(URL)):
+        if URL[i]==url:
+            return True
+    return False

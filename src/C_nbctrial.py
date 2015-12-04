@@ -26,9 +26,9 @@ def specific_nbc_crawl(url):
         content=tempcon.text
     if content=='':
         return None
-    if description==''
+    if description=='':
         return None
-    if title==''
+    if title=='':
         return None
     print 'yes'
     return [title,time,description,content,category]
@@ -50,7 +50,7 @@ def total_nbc_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
-        if url.startswith('/') and url.count('/')>2 and (len(URL)==0 or URL[-1].find(url)==-1):
+        if url.startswith('/') and url.count('/')>2 and find_duplicate_in_URL(URL, 'http://www.nbcnews.com'+url)==False:
             url='http://www.nbcnews.com'+url
             print url
             arr=specific_nbc_crawl(url)   
@@ -62,3 +62,9 @@ def total_nbc_crawl():
                 content.append(arr[3])
                 category.append(arr[4])
     return [URL,title,time,description,content,category]
+
+def find_duplicate_in_URL(URL, url):
+    for i in range(len(URL)):
+        if URL[i]==url:
+            return True
+    return False

@@ -22,9 +22,9 @@ def specific_time_crawl(url):
         return None
     [x.extract() for x in temp.findAll('script')]
     content=temp.text
-    if description==''
+    if description=='':
         return None
-    if title==''
+    if title=='':
         return None
     return [title,time,description,content,category]
 
@@ -47,7 +47,7 @@ def total_time_crawl():
     for hit in parsed_html.findAll('a', href=True):
         if hit.has_attr('data-event') and (hit.parent.name=='h2' or hit.parent.name=='h3' or hit.parent.name=='h4'):
             url=hit['href']
-            if url.find('time.com')!=-1:
+            if url.find('time.com')!=-1 and find_duplicate_in_URL(URL, url)==False:
                 arr=specific_time_crawl(url)   
                 if arr!=None:
                     URL.append(url)
@@ -58,3 +58,9 @@ def total_time_crawl():
                     category.append(arr[4])
     return [URL,title,time,description,content,category]
 
+
+def find_duplicate_in_URL(URL, url):
+    for i in range(len(URL)):
+        if URL[i]==url:
+            return True
+    return False

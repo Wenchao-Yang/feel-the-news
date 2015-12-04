@@ -29,9 +29,9 @@ def specific_aljnew_crawl(url):
             content=content+hit.text
     if content=='':
         return None
-    if description==''
+    if description=='':
         return None
-    if title==''
+    if title=='':
         return None
     return [title,time,description,content,category]
 
@@ -53,7 +53,7 @@ def total_aljnew_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
-        if (url.find('/news/')!=-1 or url.find('/indepth/')!=-1 or url.find('/programmes/')!=-1 or url.find('/blogs/')!=-1) and (len(URL)==0 or URL[-1].find(url)==-1) and url.find(".html")!=-1 and url.find("http")==-1:
+        if (url.find('/news/')!=-1 or url.find('/indepth/')!=-1 or url.find('/programmes/')!=-1 or url.find('/blogs/')!=-1) and find_duplicate_in_URL(URL, 'http://www.aljazeera.com'+url)==False and url.find(".html")!=-1 and url.find("http")==-1:
             url='http://www.aljazeera.com'+url
             arr=specific_aljnew_crawl(url)   
             if arr!=None:
@@ -64,3 +64,9 @@ def total_aljnew_crawl():
                 content.append(arr[3])
                 category.append(arr[4])
     return [URL,title,time,description,content,category]
+
+def find_duplicate_in_URL(URL, url):
+    for i in range(len(URL)):
+        if URL[i]==url:
+            return True
+    return False

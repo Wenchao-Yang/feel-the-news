@@ -39,9 +39,9 @@ def specific_bbc_crawl(url):
     title=''
     if temptitle!=None:
         title=temptitle.text
-    if description==''
+    if description=='':
         return None
-    if title==''
+    if title=='':
         return None
     print 'yes'
     return [title,time,description,content,category]
@@ -68,7 +68,7 @@ def total_bbc_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', attrs={'class':'media__link'}):
         url=hit['href']
-        if url.startswith('/'):
+        if url.startswith('/') and find_duplicate_in_URL(URL, "http://www.bbc.com"+url)==False:
             url="http://www.bbc.com"+url
             print url
             arr=specific_bbc_crawl(url)
@@ -85,7 +85,7 @@ def total_bbc_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a',  href=True):
         url=hit['href']
-        if url.startswith('/sport/') and (len(URL)==0 or URL[-1].find(url)==-1):
+        if url.startswith('/sport/') and find_duplicate_in_URL(URL, "http://www.bbc.com"+url)==False:
             url="http://www.bbc.com"+url
             print url
             arr=specific_bbc_crawl(url)
@@ -97,3 +97,10 @@ def total_bbc_crawl():
                 content.append(arr[3])
                 category.append(arr[4])
     return [URL,title,time,description,content,category]
+
+
+def find_duplicate_in_URL(URL, url):
+    for i in range(len(URL)):
+        if URL[i]==url:
+            return True
+    return False

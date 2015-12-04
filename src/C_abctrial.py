@@ -25,9 +25,9 @@ def specific_abc_crawl(url):
         content=tempcon.text
     if content=='':
         return None
-    if description==''
+    if description=='':
         return None
-    if title==''
+    if title=='':
         return None
     print 'yes'
     return [title,time,description,content,category]
@@ -49,7 +49,7 @@ def total_abc_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
-        if url[0]=='/' and (len(URL)==0 or URL[-1].find(url)==-1) and url.find("http")==-1:
+        if url[0]=='/' and url.find("http")==-1 and find_duplicate_in_URL(URL, 'http://abcnews.go.com'+url)==False:
             url='http://abcnews.go.com'+url
             print url
             arr=specific_abc_crawl(url)   
@@ -66,7 +66,7 @@ def total_abc_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
-        if url[0]=='/' and (len(URL)==0 or URL[-1].find(url)==-1) and url.find("http")==-1:
+        if url[0]=='/' and url.find("http")==-1 and find_duplicate_in_URL(URL, 'http://abcnews.go.com'+url)==False:
             url='http://abcnews.go.com'+url
             print url
             arr=specific_abc_crawl(url)   
@@ -83,7 +83,7 @@ def total_abc_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
-        if url[0]=='/' and (len(URL)==0 or URL[-1].find(url)==-1) and url.find("http")==-1:
+        if url[0]=='/' and url.find("http")==-1 and find_duplicate_in_URL(URL, 'http://abcnews.go.com'+url)==False:
             url='http://abcnews.go.com'+url
             print url
             arr=specific_abc_crawl(url)   
@@ -100,7 +100,7 @@ def total_abc_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
-        if url[0]=='/' and (len(URL)==0 or URL[-1].find(url)==-1) and url.find("http")==-1:
+        if url[0]=='/' and url.find("http")==-1 and find_duplicate_in_URL(URL, 'http://abcnews.go.com'+url)==False:
             url='http://abcnews.go.com'+url
             print url
             arr=specific_abc_crawl(url)   
@@ -117,7 +117,7 @@ def total_abc_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
-        if url[0]=='/' and (len(URL)==0 or URL[-1].find(url)==-1) and url.find("http")==-1:
+        if url[0]=='/' and url.find("http")==-1 and find_duplicate_in_URL(URL, 'http://abcnews.go.com'+url)==False:
             url='http://abcnews.go.com'+url
             print url
             arr=specific_abc_crawl(url)   
@@ -129,3 +129,11 @@ def total_abc_crawl():
                 content.append(arr[3])
                 category.append(arr[4])
     return [URL,title,time,description,content,category]
+
+
+
+def find_duplicate_in_URL(URL, url):
+    for i in range(len(URL)):
+        if URL[i]==url:
+            return True
+    return False
