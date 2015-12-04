@@ -20,9 +20,8 @@ def one_website_return(url):
 
     text = arr[3].encode('utf-8')
 
-    output = {"url":url, "domain": "null", "title": arr[0], "description": arr[2], "category": "null", "readability": 0, "sentiment": "null" }
+    output = {"url":url, "title": arr[0], "description": arr[2], "category": "null", "readability": 0, "sentiment": "null" }
 
-    output["domain"] = url.split('/', 3)[2]
     output["category"] = NBtest(text, Cat_train).final_class
     output["sentiment"] = NBtest(text, Senti_train).final_class
     output["readability"] = Read_text.avg_grade()
