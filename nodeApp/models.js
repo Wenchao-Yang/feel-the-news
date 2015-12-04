@@ -128,7 +128,7 @@ module.exports.getLikesURL = function(email, callback) {
  * Get all Liked Articles with Statistics
  */
 module.exports.getLikes = function(email, callback) {
-    connection.query("SELECT * FROM articles, likes WHERE articles.url = likes.url AND email = ?", email, function(err, result) {
+    connection.query("SELECT * FROM articles, likes WHERE articles.url = likes.url AND email = ? ORDER BY date", email, function(err, result) {
         callback(err, result);
     });
 };
@@ -137,7 +137,25 @@ module.exports.getLikes = function(email, callback) {
  * Get User Added articles
  */
 module.exports.getUserAddedArticles = function(email, callback) {
-    connection.query("SELECT * FROM articles, owner WHERE articles.url = owner.url AND email = ?", email, function(err, result) {
+    connection.query("SELECT * FROM articles, owner WHERE articles.url = owner.url AND email = ? ORDER BY date", email, function(err, result) {
         callback(err, result);
+    });
+};
+
+/**
+ * Add Article
+ */
+module.exports.addArticle = function(articleInfo, callback) {
+    connection.query("INSERT INTO articles SET ?", articleInfo, function(err) {
+        callback(err);
+    });
+};
+
+/**
+ * Add Ownership to Article
+ */
+module.exports.ownArticle = function(url, email, callback) {
+    connection.query('INSERT INTO own SET url = ?, email = ?', [url, email], function(err) {
+        callback(err);
     });
 };

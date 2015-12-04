@@ -26,6 +26,25 @@ $.post('/users/getLikesURL').done(function(data) {
     });
 });
 
+// Analyze URL Form
+$("#urlInput").submit(function(event){
+
+  // Stop form from default submit
+  event.preventDefault();
+
+  // Get url
+  var $form = $( this ),
+    urlQuery = $form.find("input[name='urlQuery']").val(),
+    act = $form.attr("action");
+
+  // Send data using post
+  var posting = $.post(act, { url: urlQuery });
+
+
+  // Receive results and modify webpage
+  posting.done(add);
+  this.reset();
+});
 
 // General Add News Row, Handles Delete & Update
 function add(data) {

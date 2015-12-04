@@ -24,16 +24,16 @@ CREATE TABLE IF NOT EXISTS user (
 CREATE TABLE IF NOT EXISTS owner (
     url varchar(500) NOT NULL,
     email varchar(100) NOT NULL,
-    FOREIGN KEY (url) REFERENCES articles(url),
-    FOREIGN KEY (email) REFERENCES user(email),
+    FOREIGN KEY (url) REFERENCES articles(url) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (email) REFERENCES user(email) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (url, email)
 );
 
 CREATE TABLE IF NOT EXISTS likes (
     url varchar(500) NOT NULL,
     email varchar(100) NOT NULL,
-    FOREIGN KEY (url) REFERENCES articles(url),
-    FOREIGN KEY (email) REFERENCES user(email),
+    FOREIGN KEY (url) REFERENCES articles(url) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (email) REFERENCES user(email) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (url, email)
 );
 

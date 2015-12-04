@@ -11,10 +11,18 @@ router.get('/', function(req, res, next) {
 
 /* Receive POST analyze URL */
 router.post('/analyzeURL', function(req, res, next) {
-    console.log('Received: ' + req.body.url);
-    var py = spawn('python', ['../crawler/singleURLAdd.py', req.body.url]);
+    console.log('Received for analysis:' + req.body.url);
+    var py = spawn('python', ['../src/merge.py', '-u', req.body.url]);
     py.stdout.on('data', function(data) {
-        res.json(JSON.parse(data));
+        //data = JSON.parse(data);
+        console.log(data);
+        models.addArticle(data, function(err) {
+            console.log(err);
+        });
+        models.ownArticle(data.url, req.user.email, function(err) {
+            console.log(err);
+        });
+        res.json(data);
     });
 });
 

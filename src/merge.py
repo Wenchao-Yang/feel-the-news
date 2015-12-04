@@ -40,6 +40,7 @@ def one_website_print(url):
 
 
 if __name__ == '__main__':
+    print ('asdfasdf');
 
     Cat_train = NBtrain('category')
     Senti_train = NBtrain('sentiment')
