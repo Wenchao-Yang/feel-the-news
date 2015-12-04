@@ -52,7 +52,7 @@ def total_nbc_crawl():
         url=hit['href']
         if url.startswith('/') and url.count('/')>2 and find_duplicate_in_URL(URL, 'http://www.nbcnews.com'+url)==False:
             url='http://www.nbcnews.com'+url
-            print url
+            # print url
             arr=specific_nbc_crawl(url)   
             if arr!=None:
                 URL.append(url)

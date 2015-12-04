@@ -51,7 +51,7 @@ def total_dogo_crawl():
         url=hit['href']
         if url.find('/2015/')!=-1 and url.find("http")==-1 and url.find('#post_comments')==-1 and find_duplicate_in_URL(URL, 'http://www.dogonews.com'+url)==False:
             url='http://www.dogonews.com'+url
-            print url
+            # print url
             arr=specific_dogo_crawl(url)   
             if arr!=None:
                 URL.append(url)

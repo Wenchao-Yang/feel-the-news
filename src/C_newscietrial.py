@@ -50,7 +50,7 @@ def total_newscie_crawl():
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
         if  find_duplicate_in_URL(URL, url)==False and url.find("www.newscientist.com")!=-1 and url.find("/article/")!=-1:
-            print url
+            # print url
             arr=specific_newscie_crawl(url)   
             if arr!=None:
                 URL.append(url)

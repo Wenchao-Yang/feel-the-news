@@ -51,7 +51,7 @@ def total_abc_crawl():
         url=hit['href']
         if url[0]=='/' and url.find("http")==-1 and find_duplicate_in_URL(URL, 'http://abcnews.go.com'+url)==False:
             url='http://abcnews.go.com'+url
-            print url
+            # print url
             arr=specific_abc_crawl(url)   
             if arr!=None:
                 URL.append(url)
@@ -68,7 +68,7 @@ def total_abc_crawl():
         url=hit['href']
         if url[0]=='/' and url.find("http")==-1 and find_duplicate_in_URL(URL, 'http://abcnews.go.com'+url)==False:
             url='http://abcnews.go.com'+url
-            print url
+            # print url
             arr=specific_abc_crawl(url)   
             if arr!=None:
                 URL.append(url)
@@ -85,7 +85,7 @@ def total_abc_crawl():
         url=hit['href']
         if url[0]=='/' and url.find("http")==-1 and find_duplicate_in_URL(URL, 'http://abcnews.go.com'+url)==False:
             url='http://abcnews.go.com'+url
-            print url
+            # print url
             arr=specific_abc_crawl(url)   
             if arr!=None:
                 URL.append(url)
@@ -102,7 +102,7 @@ def total_abc_crawl():
         url=hit['href']
         if url[0]=='/' and url.find("http")==-1 and find_duplicate_in_URL(URL, 'http://abcnews.go.com'+url)==False:
             url='http://abcnews.go.com'+url
-            print url
+            # print url
             arr=specific_abc_crawl(url)   
             if arr!=None:
                 URL.append(url)
@@ -119,7 +119,7 @@ def total_abc_crawl():
         url=hit['href']
         if url[0]=='/' and url.find("http")==-1 and find_duplicate_in_URL(URL, 'http://abcnews.go.com'+url)==False:
             url='http://abcnews.go.com'+url
-            print url
+            # print url
             arr=specific_abc_crawl(url)   
             if arr!=None:
                 URL.append(url)

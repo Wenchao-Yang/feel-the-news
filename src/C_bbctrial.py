@@ -70,7 +70,7 @@ def total_bbc_crawl():
         url=hit['href']
         if url.startswith('/') and find_duplicate_in_URL(URL, "http://www.bbc.com"+url)==False:
             url="http://www.bbc.com"+url
-            print url
+            # print url
             arr=specific_bbc_crawl(url)
             if arr!=None:
                 URL.append(url)
@@ -87,7 +87,7 @@ def total_bbc_crawl():
         url=hit['href']
         if url.startswith('/sport/') and find_duplicate_in_URL(URL, "http://www.bbc.com"+url)==False:
             url="http://www.bbc.com"+url
-            print url
+            # print url
             arr=specific_bbc_crawl(url)
             if arr!=None:
                 URL.append(url)

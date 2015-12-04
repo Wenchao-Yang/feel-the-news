@@ -19,7 +19,7 @@ def UserUrlInput(url):
     import urllib2 
     if url.startswith("http://")!=True and url.startswith("https://")!=True:
         url="http://"+url
-    print url
+    # print url
     headers = {
     'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6'
     }

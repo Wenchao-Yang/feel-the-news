@@ -52,7 +52,7 @@ def total_sport_crawl():
         url=hit['href']
         if url.startswith('/') and url.count('/')>1 and find_duplicate_in_URL(URL, 'http://www.sportingnews.com'+url)==False and url.find('/photos/')==-1:
             url='http://www.sportingnews.com'+url
-            print url
+            # print url
             arr=specific_sport_crawl(url)   
             if arr!=None:
                 URL.append(url)

@@ -100,7 +100,7 @@ def total_cnn_crawl():
         url=hit.previous['href']
         if url.startswith('/') and url.find('videos')==-1 and find_duplicate_in_URL(URL,"http://www.cnn.com"+url)==False:
             url="http://www.cnn.com"+url
-            print url
+            # print url
             arr=specific_cnn_crawl(url)
             if arr!=None:
                 URL.append(url)
@@ -130,7 +130,7 @@ def total_cnn_money_crawl():
         url=hit['href']
         if url.startswith('/2015') and url.find('videos')==-1 and find_duplicate_in_URL(URL,"http://money.cnn.com"+url)==False:
             url="http://money.cnn.com"+url
-            print url
+            # print url
             arr=specific_cnn_money_crawl(url)
             if arr!=None:
                 URL.append(url)
