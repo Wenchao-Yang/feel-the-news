@@ -25,7 +25,7 @@ def specific_cnn_crawl(url):
         return None
     if title=='':
         return None
-    print 'yes'
+    # print 'yes'
     return [title,time,description,content,category]
 
 
@@ -59,7 +59,7 @@ def specific_cnn_money_crawl(url):
     [x.extract() for x in tempcon.findAll('figure')]
     [x.extract() for x in tempcon.findAll('style')]
     content=tempcon.text
-    print 'yes'
+    # print 'yes'
     return [title,time,description,content,category]
 
 

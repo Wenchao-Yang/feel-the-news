@@ -1,4 +1,7 @@
 def UserUrlInput(url):
+
+    '''Aims to crawl one specific article'''
+
     from C_anytrial import any_crawl
     from C_abctrial import specific_abc_crawl
     from C_aljazeeratrial import specific_aljamerica_crawl
@@ -57,6 +60,6 @@ def UserUrlInput(url):
         arr=any_crawl(url)
     return arr
 
-
+    ''':return a list containing [title,time,description,content,category]'''
 
         

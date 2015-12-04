@@ -29,7 +29,7 @@ def specific_abc_crawl(url):
         return None
     if title=='':
         return None
-    print 'yes'
+    # print 'yes'
     return [title,time,description,content,category]
 
 

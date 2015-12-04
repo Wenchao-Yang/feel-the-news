@@ -46,7 +46,7 @@ def total_aljamerica_crawl():
     parsed_html = BeautifulSoup(bbcnewscontent,'lxml')
     for hit in parsed_html.findAll('a', href=True):
         url=hit['href']
-        if url.find("http")==-1 and url.find('/articles/')!=-1 and url.find('/2015/')!=-1 and url.find('/video/')==-1 find_duplicate_in_URL(URL, 'http://america.aljazeera.com'+url)==False:
+        if url.find("http")==-1 and url.find('/articles/')!=-1 and url.find('/2015/')!=-1 and url.find('/video/')==-1 and find_duplicate_in_URL(URL, 'http://america.aljazeera.com'+url)==False:
             url='http://america.aljazeera.com'+url
             arr=specific_aljamerica_crawl(url)   
             if arr!=None:

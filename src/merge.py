@@ -3,25 +3,29 @@
 
 from R_readbility import Text
 import json
+from UserURLinput import UserUrlInput
+from NB_NaiveBayes import NBtrain, NBtest
+import time
 
 def one_website_return(url):
     '''
     :param url: url
     :return: a dictionary
     '''
-    from trial import crawlerforspecificwebsite
-    arr=crawlerforspecificwebsite(url)
 
-    text = Text(arr[0].encode('utf-8'))
+    arr=UserUrlInput(url)
+    # return a list containing [title,time,description,content,category]
 
-    output = {"title":"null", "description":"null","senRate":0, "readRate":0, "url":"null", "category":"null"}
-    output["title"] = arr[1]
-    output["description"] = arr[3]
-    output["senRate"] = 0  # TODO: sentiment analysis
-    output["readRate"] = text.avg_grade()
-    output["url"] = url
-    output["category"] = arr[2]
-    output["readby"] = "Unread"
+    Read_text = Text(arr[3].encode('utf-8'))
+
+    text = arr[3].encode('utf-8')
+
+    output = {"url":url, "domain": "null", "title": arr[0], "description": arr[2], "category": "null", "readability": 0, "sentiment": "null" }
+
+    output["domain"] = url.split('/', 3)[2]
+    output["category"] = NBtest(text, Cat_train).final_class
+    output["sentiment"] = NBtest(text, Senti_train).final_class
+    output["readability"] = Read_text.avg_grade()
 
     return output
 
@@ -69,18 +73,36 @@ def total_website_print(day = "Thu"):
 
 
 if __name__ == '__main__':
-    import sys
-    if sys.argv[1] == '-u':
-        one_website_print(sys.argv[2])
-    elif sys.argv[1] == '-d':
-        total_website_print(sys.argv[2])
-    else:
-        print('merge.py -u <url>')
-        print('merge.py -d <day>')
+    # import sys
+    # if sys.argv[1] == '-u':
+    #     one_website_print(sys.argv[2])
+    # elif sys.argv[1] == '-d':
+    #     total_website_print(sys.argv[2])
+    # else:
+    #     print('merge.py -u <url>')
+    #     print('merge.py -d <day>')
+
+    Cat_train = NBtrain('category')
+    # result = NBtest(text, train)
+    # print(result.prob)
+    # print(result.final_class)
+    Senti_train = NBtrain('sentiment')
+    # result = NBtest(text, train)
+    # print(result.prob)
+    # print(result.final_class)
 
 
-    # one_website_print("http://www.bbc.com/news/world-europe-34595409")
+    start_time = time.time()
+    one_website_print("http://www.bbc.com/news/world-europe-34595409")
+    elapsed_time = time.time() - start_time
+    print(elapsed_time)
+
+
 
     # print(total_website_return()[0])
     # total_website_print()
-    # one_website_print("http://www.bbc.com/news/world-europe-34602621")
+    start_time = time.time()
+    one_website_print("http://www.bbc.com/news/world-europe-34602621")
+    elapsed_time = time.time() - start_time
+    print(elapsed_time)
+

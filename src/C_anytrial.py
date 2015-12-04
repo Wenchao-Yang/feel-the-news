@@ -38,7 +38,7 @@ def any_crawl(url):
             parentnum=len(parent.text)
     
     
-    if parent=None:
+    if parent==None:
         return None
     tempparent=parent
     tempparentsib=maxp.findPreviousSibling(tempparent.name)
