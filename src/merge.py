@@ -19,11 +19,11 @@ def one_website_return(url):
     text = arr[3].encode('utf-8')
     Read_text = Text(text)
 
-    output = {"url":url, "title": arr[0], "description": arr[2], "category": "null", "readability": 0, "sentiment": "null" }
+    output = {"url":url, "title": arr[0], "description": arr[2], "category": "null", "readRate": 0, "senRate": "null" }
 
     output["category"] = NBtest(text, Cat_train).final_class
-    output["sentiment"] = NBtest(text, Senti_train).final_class
-    output["readability"] = Read_text.avg_grade()
+    output["senRate"] = NBtest(text, Senti_train).final_class
+    output["readRate"] = Read_text.avg_grade()
 
     return output
 
@@ -37,37 +37,6 @@ def one_website_print(url):
     print(json.dumps(output))
 
 
-
-def total_website_return(day="Thu"):
-    '''
-    :param day:
-    :return: a list of dict
-    '''
-    from crawler import crawlerforrss
-    arr=crawlerforrss(day)
-    output = []
-
-    for i in range(len(arr)):
-        text = Text(arr[i][4].encode('utf-8'))
-
-        one_output = {"title":"null", "description":"null","senRate":0, "readRate":0, "url":"null", "category":"null"}
-        one_output["title"] = arr[i][0]
-        one_output["description"] = arr[i][3]
-        one_output["senRate"] = 0  # TODO: sentiment analysis
-        one_output["readRate"] = text.avg_grade()
-        one_output["url"] = arr[i][1]
-        one_output["category"] = arr[i][5]
-        one_output["readby"] = "Unread"
-
-        output.append(one_output)
-
-    return output
-
-
-
-def total_website_print(day = "Thu"):
-    output = total_website_return(day)
-    print(json.dumps(output))
 
 
 if __name__ == '__main__':
@@ -108,3 +77,25 @@ if __name__ == '__main__':
     one_website_print("http://blog.hubspot.com/blog/tabid/6307/bid/34010/How-to-Use-Photoshop-The-Ultimate-Guide-for-the-Design-Impaired-Marketer.aspx")
     elapsed_time = time.time() - start_time
     print(elapsed_time)
+
+    start_time = time.time()
+    one_website_print("http://america.aljazeera.com/articles/2015/12/3/san-bernardino-shooting-motive-searched.html")
+    elapsed_time = time.time() - start_time
+    print(elapsed_time)
+
+    start_time = time.time()
+    one_website_print("http://america.aljazeera.com/articles/2015/12/3/long-troubled-san-bernardino-in-shock-over-mass-shooting.html")
+    elapsed_time = time.time() - start_time
+    print(elapsed_time)
+
+    start_time = time.time()
+    one_website_print("http://america.aljazeera.com/articles/2015/12/3/mass-shooting-by-week.html")
+    elapsed_time = time.time() - start_time
+    print(elapsed_time)
+
+    start_time = time.time()
+    one_website_print("http://www.aljazeera.com/news/2015/10/afghan-refugee-shot-dead-enter-bulgaria-151016072352279.html")
+    elapsed_time = time.time() - start_time
+    print(elapsed_time)
+
+
