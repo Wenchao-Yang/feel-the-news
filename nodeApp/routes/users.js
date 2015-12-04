@@ -81,14 +81,12 @@ router.post('/getUserAddedArticles', function(req, res, next) {
 
 /* Receive POST Query */
 router.post('/normalQuery', function(req, res, next) {
-    console.log(req);
     console.log('Received: Normal Query Request ' + JSON.stringify(req.body));
     //WATCH OUT: res overwrite
     models.articlesQuery(req.body, function(err, result) {
         if (err) {
             console.log(err);
         }
-        console.log(result);
         res.json(result);
     });
 });
