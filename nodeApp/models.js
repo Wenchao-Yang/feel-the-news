@@ -93,7 +93,7 @@ module.exports.articlesQuery = function(queryWhere, callback) {
         queryString += generateWhere(queryWhere);
     queryString +=' ORDER BY date';
     connection.query(queryString, function(err, result) {
-        callback(err, result.slice(0, 9));
+        callback(err, result.slice(0, 19));
     });
 };
 
