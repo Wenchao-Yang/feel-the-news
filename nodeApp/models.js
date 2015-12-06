@@ -1,5 +1,6 @@
 var mysql = require('mysql');
-var connection = mysql.createConnection({
+var pool = mysql.createPool({
+    connectionLimit: 10,
     host    : 'localhost',
     user    : 'root',
     password: '1111',
@@ -10,7 +11,7 @@ var connection = mysql.createConnection({
  * Finds User
  */
 module.exports.findUser = function(UserID, callback) {
-    connection.query('SELECT * FROM user WHERE ?', UserID, function(err, result) {
+    pool.query('SELECT * FROM user WHERE ?', UserID, function(err, result) {
         callback(err, result[0]);
     });
 };
@@ -19,7 +20,7 @@ module.exports.findUser = function(UserID, callback) {
  * Register User
  */
 module.exports.registerUser = function(UserInfo, callback) {
-    connection.query('INSERT INTO user SET ?', UserInfo, function(err) {
+    pool.query('INSERT INTO user SET ?', UserInfo, function(err) {
         callback(err);
     });
 };
@@ -29,7 +30,7 @@ module.exports.registerUser = function(UserInfo, callback) {
  */
 module.exports.updateUser = function(UserInfo, email, callback) {
     console.log(UserInfo);
-    connection.query('UPDATE user SET ? WHERE ?', [UserInfo, email], function(err) {
+    pool.query('UPDATE user SET ? WHERE ?', [UserInfo, email], function(err) {
         callback(err);
     });
 };
@@ -51,34 +52,34 @@ function generateWhere(queryObject) {
     var firstCond = true;
     if (queryObject.readRateLow) {
         if (firstCond) {
-            query += ' readRate > ' + connection.escape(queryObject.readRateLow);
+            query += ' readRate > ' + pool.escape(queryObject.readRateLow);
             firstCond = false;
         } else {
-            query += ' AND readRate > ' + connection.escape(queryObject.readRateLow);
+            query += ' AND readRate > ' + pool.escape(queryObject.readRateLow);
         }
     }
     if (queryObject.readRateHigh) {
         if (firstCond) {
-            query += ' readRate <= ' + connection.escape(queryObject.readRateHigh);
+            query += ' readRate <= ' + pool.escape(queryObject.readRateHigh);
             firstCond = false;
         } else {
-            query += ' AND readRate <= ' + connection.escape(queryObject.readRateHigh);
+            query += ' AND readRate <= ' + pool.escape(queryObject.readRateHigh);
         }
     }
     if (queryObject.senRate) {
         if (firstCond) {
-            query += ' senRate = ' + connection.escape(queryObject.senRate);
+            query += ' senRate = ' + pool.escape(queryObject.senRate);
             firstCond = false;
         } else {
-            query += ' AND senRate = ' + connection.escape(queryObject.senRate);
+            query += ' AND senRate = ' + pool.escape(queryObject.senRate);
         }
     }
     if (queryObject.category) {
         if (firstCond) {
-            query += ' category = ' + connection.escape(queryObject.category);
+            query += ' category = ' + pool.escape(queryObject.category);
             firstCond = false;
         } else {
-            query += ' AND category = ' + connection.escape(queryObject.category);
+            query += ' AND category = ' + pool.escape(queryObject.category);
         }
     }
     return query;
@@ -92,8 +93,8 @@ module.exports.articlesQuery = function(queryWhere, callback) {
     if (!isEmptyObject(queryWhere))
         queryString += generateWhere(queryWhere);
     queryString +=' ORDER BY date';
-    connection.query(queryString, function(err, result) {
-        callback(err, result.slice(0, 9));
+    pool.query(queryString, function(err, result) {
+        callback(err, result.slice(0, 19));
     });
 };
 
@@ -101,7 +102,7 @@ module.exports.articlesQuery = function(queryWhere, callback) {
  * Like an Article
  */
 module.exports.like = function(url, email, callback) {
-    connection.query('INSERT INTO likes SET url = ?, email = ?', [url, email], function(err) {
+    pool.query('INSERT INTO likes SET url = ?, email = ?', [url, email], function(err) {
         callback(err);
     });
 };
@@ -110,7 +111,7 @@ module.exports.like = function(url, email, callback) {
  * Remove Like on an Article
  */
 module.exports.removeLike = function(url, email, callback) {
-    connection.query('DELETE FROM likes WHERE url = ? AND email = ?', [url, email], function(err) {
+    pool.query('DELETE FROM likes WHERE url = ? AND email = ?', [url, email], function(err) {
         callback(err);
     });
 };
@@ -119,7 +120,7 @@ module.exports.removeLike = function(url, email, callback) {
  * Get all Liked Articles URL
  */
 module.exports.getLikesURL = function(email, callback) {
-    connection.query('SELECT url FROM likes WHERE email = ?', email, function(err, result) {
+    pool.query('SELECT url FROM likes WHERE email = ?', email, function(err, result) {
         callback(err, result);
     });
 };
@@ -128,7 +129,7 @@ module.exports.getLikesURL = function(email, callback) {
  * Get all Liked Articles with Statistics
  */
 module.exports.getLikes = function(email, callback) {
-    connection.query("SELECT * FROM articles, likes WHERE articles.url = likes.url AND email = ? ORDER BY date", email, function(err, result) {
+    pool.query("SELECT * FROM articles, likes WHERE articles.url = likes.url AND email = ? ORDER BY date", email, function(err, result) {
         callback(err, result);
     });
 };
@@ -137,7 +138,7 @@ module.exports.getLikes = function(email, callback) {
  * Get User Added articles
  */
 module.exports.getUserAddedArticles = function(email, callback) {
-    connection.query("SELECT * FROM articles, owner WHERE articles.url = owner.url AND email = ? ORDER BY date", email, function(err, result) {
+    pool.query("SELECT * FROM articles, owner WHERE articles.url = owner.url AND email = ? ORDER BY date", email, function(err, result) {
         callback(err, result);
     });
 };
@@ -146,7 +147,7 @@ module.exports.getUserAddedArticles = function(email, callback) {
  * Add Article
  */
 module.exports.addArticle = function(articleInfo, callback) {
-    connection.query("INSERT INTO articles SET ?", articleInfo, function(err) {
+    pool.query("INSERT INTO articles SET ?", articleInfo, function(err) {
         callback(err);
     });
 };
@@ -155,7 +156,7 @@ module.exports.addArticle = function(articleInfo, callback) {
  * Add Ownership to Article
  */
 module.exports.ownArticle = function(url, email, callback) {
-    connection.query('INSERT INTO owner SET url = ?, email = ?', [url, email], function(err) {
+    pool.query('INSERT INTO owner SET url = ?, email = ?', [url, email], function(err) {
         callback(err);
     });
 };
