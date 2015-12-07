@@ -11,8 +11,12 @@ var pool = mysql.createPool({
  * Finds User
  */
 module.exports.findUser = function(UserID, callback) {
-    pool.query('SELECT * FROM user WHERE ?', UserID, function(err, result) {
-        callback(err, result[0]);
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query('SELECT * FROM user WHERE ?', UserID, function(err, result) {
+            callback(err, result[0]);
+            connection.release();
+        });
     });
 };
 
@@ -20,8 +24,12 @@ module.exports.findUser = function(UserID, callback) {
  * Register User
  */
 module.exports.registerUser = function(UserInfo, callback) {
-    pool.query('INSERT INTO user SET ?', UserInfo, function(err) {
-        callback(err);
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query('INSERT INTO user SET ?', UserInfo, function(err) {
+            callback(err);
+            connection.release();
+        });
     });
 };
 
@@ -29,9 +37,12 @@ module.exports.registerUser = function(UserInfo, callback) {
  * Update User Information
  */
 module.exports.updateUser = function(UserInfo, email, callback) {
-    console.log(UserInfo);
-    pool.query('UPDATE user SET ? WHERE ?', [UserInfo, email], function(err) {
-        callback(err);
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query('UPDATE user SET ? WHERE ?', [UserInfo, email], function(err) {
+            callback(err);
+            connection.release();
+        });
     });
 };
 
@@ -93,8 +104,12 @@ module.exports.articlesQuery = function(queryWhere, callback) {
     if (!isEmptyObject(queryWhere))
         queryString += generateWhere(queryWhere);
     queryString +=' ORDER BY date';
-    pool.query(queryString, function(err, result) {
-        callback(err, result.slice(0, 19));
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query(queryString, function(err, result) {
+            callback(err, result.slice(0, 19));
+            connection.release();
+        });
     });
 };
 
@@ -102,8 +117,12 @@ module.exports.articlesQuery = function(queryWhere, callback) {
  * Like an Article
  */
 module.exports.like = function(url, email, callback) {
-    pool.query('INSERT INTO likes SET url = ?, email = ?', [url, email], function(err) {
-        callback(err);
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query('INSERT INTO likes SET url = ?, email = ?', [url, email], function(err) {
+            callback(err);
+            connection.release();
+        });
     });
 };
     
@@ -111,8 +130,12 @@ module.exports.like = function(url, email, callback) {
  * Remove Like on an Article
  */
 module.exports.removeLike = function(url, email, callback) {
-    pool.query('DELETE FROM likes WHERE url = ? AND email = ?', [url, email], function(err) {
-        callback(err);
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query('DELETE FROM likes WHERE url = ? AND email = ?', [url, email], function(err) {
+            callback(err);
+            connection.release();
+        });
     });
 };
     
@@ -120,8 +143,12 @@ module.exports.removeLike = function(url, email, callback) {
  * Get all Liked Articles URL
  */
 module.exports.getLikesURL = function(email, callback) {
-    pool.query('SELECT url FROM likes WHERE email = ?', email, function(err, result) {
-        callback(err, result);
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query('SELECT url FROM likes WHERE email = ?', email, function(err, result) {
+            callback(err, result);
+            connection.release();
+        });
     });
 };
 
@@ -129,8 +156,12 @@ module.exports.getLikesURL = function(email, callback) {
  * Get all Liked Articles with Statistics
  */
 module.exports.getLikes = function(email, callback) {
-    pool.query("SELECT * FROM articles, likes WHERE articles.url = likes.url AND email = ? ORDER BY date", email, function(err, result) {
-        callback(err, result);
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query("SELECT * FROM articles, likes WHERE articles.url = likes.url AND email = ? ORDER BY date", email, function(err, result) {
+            callback(err, result);
+            connection.release();
+        });
     });
 };
 
@@ -138,8 +169,12 @@ module.exports.getLikes = function(email, callback) {
  * Get User Added articles
  */
 module.exports.getUserAddedArticles = function(email, callback) {
-    pool.query("SELECT * FROM articles, owner WHERE articles.url = owner.url AND email = ? ORDER BY date", email, function(err, result) {
-        callback(err, result);
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query("SELECT * FROM articles, owner WHERE articles.url = owner.url AND email = ? ORDER BY date", email, function(err, result) {
+            callback(err, result);
+            connection.release();
+        });
     });
 };
 
@@ -147,8 +182,12 @@ module.exports.getUserAddedArticles = function(email, callback) {
  * Add Article
  */
 module.exports.addArticle = function(articleInfo, callback) {
-    pool.query("INSERT INTO articles SET ?", articleInfo, function(err) {
-        callback(err);
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query("INSERT INTO articles SET ?", articleInfo, function(err) {
+            callback(err);
+            connection.release();
+        });
     });
 };
 
@@ -156,7 +195,11 @@ module.exports.addArticle = function(articleInfo, callback) {
  * Add Ownership to Article
  */
 module.exports.ownArticle = function(url, email, callback) {
-    pool.query('INSERT INTO owner SET url = ?, email = ?', [url, email], function(err) {
-        callback(err);
+    pool.getConnection(function(err, connection) {
+        if (err) throw err;
+        connection.query('INSERT INTO owner SET url = ?, email = ?', [url, email], function(err) {
+            callback(err);
+            connection.release();
+        });
     });
 };
